@@ -21,7 +21,15 @@
     background-color: teal;
 }
 
-.kullanıcı-çekmece-girişyap
+.kullanıcı-çekmece
 {
-    
+    height: 100vh;
+    width: 25vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 51;
+    border-radius: 2px;
+    background-color: rgb(146, 10, 225);
 }
+
