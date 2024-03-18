@@ -1,8 +1,10 @@
-.sayfa-başlığı {
+.sayfa-başlığı
+{
 
 }
 
-.sayfa-gövdesi {
+.sayfa-gövdesi
+{
     height: 100vh;
     width: 100vw;
     padding: none;
@@ -11,4 +13,9 @@
     top: 0;
     left: 0;
     background-color: teal;
+}
+
+.kullanıcı-çekmece-girişyap
+{
+    
 }
