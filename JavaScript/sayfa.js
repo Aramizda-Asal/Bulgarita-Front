@@ -22,3 +22,15 @@ function KullanıcıÇekmecesi()
         kullanıcı_çekmecesi_açık = true;
     }
 }
+
+function Göster_KayıtOl()
+{
+    document.getElementById("giriş-yap").style.display = "none";
+    document.getElementById("kayıt-ol").style.display = "block";
+}
+
+function Göster_GirişYap()
+{
+    document.getElementById("kayıt-ol").style.display = "none";
+    document.getElementById("giriş-yap").style.display = "block";
+}
