@@ -24,3 +24,21 @@ function KayitOl()
         alert("Kayit Olunamadı")
     }
 }
+
+function GirişYap()
+{
+    let kullanıcıAdı = document.getElementById("kullanıcıadı-giriş").value
+    let parola = document.getElementById("parola-giriş").value
+
+    let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
+    alert(url)
+    fetch(url, {method: 'GET'})
+        .then(response => response.text())
+        .then((response) => {
+            console.log(response)
+            if(response == "")
+            {
+                alert("Reddedildi")
+            }
+        })
+}
