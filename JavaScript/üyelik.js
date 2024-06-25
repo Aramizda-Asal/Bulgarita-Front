@@ -33,7 +33,7 @@ function GirişYap()
     let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
     alert(url)
     fetch(url, {method: 'GET'})
-        .then(response => response.text())
+        .then(response => response.json())
         .then((response) => {
             console.log(response)
             if(response == "")
