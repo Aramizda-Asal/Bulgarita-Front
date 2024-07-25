@@ -1,3 +1,8 @@
+body
+{
+    overflow: hidden;
+}
+
 .sayfa-başlığı
 {
     height: 10vh;
@@ -6,7 +11,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 50;
+    z-index: 40;
     
     background-color: #ffff0055;
 }
@@ -32,7 +37,7 @@
     height: 100vh;
     width: 100vw;
     margin: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: teal;
@@ -41,14 +46,17 @@
 .kullanıcı-çekmece
 {
     height: 100vh;
-    width: 0; /*açılınca 25vw*/
-    position: absolute;
+    width: 100vw;
+    position: fixed;
     top: 0;
-    right: 0;
+    right: auto;
+    left: 100%;
     z-index: 51;
-    border-radius: 2px;
-    background-color: rgb(146, 10, 225);
+    /*border-radius: 2px;*/
+    /*background-color: rgb(146, 10, 225);*/
     transition: 750ms;
+    transform-origin: 100% 0 0;
+    transform: none;
 }
 
 #kullanıcı-çekmece-ayarlar
@@ -56,3 +64,45 @@
     display: none;
 }
 
+#kullanıcı-çekmece-ayarlar
+{
+    display: none;
+}
+
+.çekmece-içi
+{
+    height: 95vh;
+    width: 90%;
+    margin: calc(2.5vh - 2px) calc(5% - 2px);
+    background-color: #e9fbfacc;
+    border: 4px solid transparent;
+    border-radius: 15px;
+    box-shadow: 0 0 1vh 1vh #33333342;
+    overflow-y: auto;
+}
+
+#kapatıcı
+{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: none;
+    z-index: 45;
+    display: none;
+    cursor: crosshair;
+}
+
+@media (orientation:landscape)
+{
+    .kullanıcı-çekmece
+    {
+        width: 25vw;
+    }
+}
+
+#kayıt-ol
+{
+    display: none;
+}
