@@ -44,3 +44,9 @@ function Göster_GirişYap()
     document.getElementById("kayıt-ol").style.display = "none";
     document.getElementById("giriş-yap").style.display = "block";
 }
+
+function AyarlaraGit()
+{
+    document.getElementById("kullanıcı-çekmece-ayarlar").style.display = "block"
+    document.getElementById("kullanıcı-çekmece-profil").style.display = "none"
+}

@@ -58,6 +58,12 @@ body
     transform-origin: 100% 0 0;
     transform: none;
 }
+
+#kullanıcı-çekmece-ayarlar
+{
+    display: none;
+}
+
 .çekmece-içi
 {
     height: 95vh;
