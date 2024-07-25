@@ -6,7 +6,7 @@ function KayitOl()
     let Parola2 = document.getElementById("parola-kayıt-tekrar").value
     if(Parola1 === Parola2)
     {
-        let url = "http://localhost:5130/Kullanıcı/KullanıcıEkle?Kullanıcı_Adı=" + KullanıcıAdı + "&E_Posta=" + E_Posta + "&Parola=" + Parola1
+        let url = "http://localhost:5130/Kullanıcı/KullanıcıEkle/" + KullanıcıAdı + "/" + E_Posta + "/" + Parola1
         fetch(url, {method: 'POST'})
             .then(response =>{
                 if(response.status === 201)
