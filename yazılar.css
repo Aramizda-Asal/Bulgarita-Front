@@ -9,3 +9,49 @@
 {
     text-align: left;
 }
+
+.nokta-türkçe
+{
+    text-align: center;
+    background-color: transparent;
+    font-size: xx-large;
+    font-weight: bolder;
+    font-family: sans-serif;
+    margin: 8vh 0 6vh;
+    text-shadow: ;
+}
+
+.nokta-bu-la, .nokta-bu-ki, .nokta-osmn
+{
+    text-align: center;
+    background-color: transparent;
+    font-size: large;
+    font-weight: normal;
+    font-family: sans-serif;
+    margin: 0 0 2vh;
+}
+
+.nokta-içerik
+{
+    text-align: left;
+    font-size: large;
+    font-weight: normal;
+    font-family: sans-serif;
+    background-color: transparent;
+    margin: 6vh 1vw 0 1vw;
+    width: 21vw;
+}
+
+.nokta-içerik-kutu
+{
+    width: 11vw;
+    background-color: #40e0d07b;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.nokta-satır
+{
+    height: 8vh;
+    background-color: transparent;
+}
