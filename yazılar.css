@@ -10,48 +10,87 @@
     text-align: left;
 }
 
-.nokta-türkçe
+.nokta-başlıklar
 {
     text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+
     background-color: transparent;
+
+    margin: 8vh 0 8vh;
+}
+
+.nokta-büyükBaşlık
+{
     font-size: xx-large;
-    font-weight: bolder;
-    font-family: sans-serif;
-    margin: 8vh 0 6vh;
-    text-shadow: ;
+    color: black;
 }
 
-.nokta-bu-la, .nokta-bu-ki, .nokta-osmn
+.nokta-altBaşlık
+{
+    font-size: x-large;
+    color: rgb(81, 80, 80);
+}
+
+.nokta-bilgiler
 {
     text-align: center;
-    background-color: transparent;
     font-size: large;
-    font-weight: normal;
+    font-weight: bold;
     font-family: sans-serif;
-    margin: 0 0 2vh;
+    color: rgb(50, 50, 50);
+
+    background-color: transparent;
+
+    margin: 8vh 0 8vh;
 }
 
-.nokta-içerik
+.nokta-diller
 {
-    text-align: left;
-    font-size: large;
-    font-weight: normal;
-    font-family: sans-serif;
-    background-color: transparent;
-    margin: 6vh 1vw 0 1vw;
-    width: 21vw;
+    margin: 2vh 0 2vh;
 }
 
-.nokta-içerik-kutu
+.nokta-koordinat
 {
-    width: 11vw;
-    background-color: #40e0d07b;
+    margin: 2vh 0 2vh;
+}
+
+.nokta-link
+{
+    background-color: #40e0d0;
+    border: 3px solid #40e0d0;
+    border-radius: 10px;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+
     text-align: center;
-    border-radius: 8px;
+
+    width: calc(80%-6px);
+    margin: 4vh auto;
+
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
 }
 
-.nokta-satır
+.nokta-link a
 {
-    height: 8vh;
-    background-color: transparent;
+    color: #072c28;
+    font-size: small;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.nokta-link:hover 
+{
+    background-color: #bdf4ef;
+    border-color: #bdf4ef;
+}
+
+.nokta-link:hover a
+{
+    color: #158479;
 }
