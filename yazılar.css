@@ -58,30 +58,23 @@
 
 .nokta-link
 {
+    display: block;
+    cursor: pointer;
+    
+    width: calc(80% - 6px);
+    margin: 4vh auto;
+
     background-color: #40e0d0;
     border: 3px solid #40e0d0;
     border-radius: 10px;
-    padding: 0.2em 0.6em;
-    cursor: pointer;
+    padding: 0.3em 0;
 
-    text-align: center;
-
-    width: calc(80%-6px);
-    margin: 4vh auto;
-
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    right: 10%;
-}
-
-.nokta-link a
-{
     color: #072c28;
-    font-size: small;
-    font-weight: bold;
-    text-decoration: none;
+    text-align: center;
     font-family: sans-serif;
+    font-weight: bold;
+    font-size: small;
+    text-decoration: none;
 }
 
 .nokta-link:hover 

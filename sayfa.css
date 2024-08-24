@@ -74,11 +74,9 @@ body
     width: 100vw;
     position: fixed;
     top: 0;
-    right: auto;
+    left: auto;
     right: 100%;
     z-index: 51;
-    /*border-radius: 2px;*/
-    /*background-color: rgb(146, 10, 225);*/
     transition: 750ms;
     transform-origin: 0 100% 0;
     transform: none;
@@ -106,6 +104,13 @@ body
     border-radius: 15px;
     box-shadow: 0 0 1vh 1vh #33333342;
     overflow-y: auto;
+}
+.çekmece-içalt
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 #kapatıcı
