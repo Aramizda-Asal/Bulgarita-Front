@@ -57,3 +57,13 @@
     width: 100%;
     text-align: center;
 }
+
+.arama-çubuğu
+{
+    height: 25%;
+    width: 95%;
+    margin: 3% 0;
+    border-radius: 20px;
+    padding: 1%;
+    border: none;
+}

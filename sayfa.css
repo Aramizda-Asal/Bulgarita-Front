@@ -23,6 +23,15 @@ body
     float: right;
     text-align: center;
 }
+.arama
+{
+    display: block;
+    width: 46%;
+    margin: 0 30% 0 7%;
+    height: 100%;
+    float: right;
+    text-align: center;
+}
 .giriş-düğmesi
 {
     display: block;
