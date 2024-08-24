@@ -103,11 +103,20 @@ body
     border: 4px solid transparent;
     border-radius: 15px;
     box-shadow: 0 0 1vh 1vh #33333342;
+}
+.çekmece-içorta
+{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
     overflow-y: auto;
 }
 .çekmece-içalt
 {
     width: 100%;
+    height: 10%;
     position: absolute;
     bottom: 0;
     left: 0;
