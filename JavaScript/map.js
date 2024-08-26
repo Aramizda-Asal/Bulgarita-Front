@@ -16,12 +16,15 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-            "label": "Pazarcık"
+                "BulgarcaLatin": "Pazardzhik",
+                "BulgarcaKiril": "Пазарджик",
+                "Türkçe": "Pazarcık",
+                "Osmanlıca": "Pazarcık"
             },
             "geometry": 
             {
-            "type": "Point",
-            "coordinates": [24.334235,42.192271]
+                "type": "Point",
+                "coordinates": [24.334235,42.192271]
             }
         },
 
@@ -29,7 +32,10 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-                "label": "Filibe"
+                "BulgarcaLatin": "Plovdiv",
+                "BulgarcaKiril": "Пловдив",
+                "Türkçe": "Filibe",
+                "Osmanlıca": "Filibe"
             },
             "geometry": 
             {
@@ -42,7 +48,10 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-                "label": "Blagoevgrad"
+                "BulgarcaLatin": "Blagoevgrad",
+                "BulgarcaKiril": "Благоевград",
+                "Türkçe": "Blagoevgrad",
+                "Osmanlıca": "Blagoevgrad"
             },
             "geometry": 
             {
@@ -55,7 +64,10 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-                "label": "Burgas"
+                "BulgarcaLatin": "Burgas",
+                "BulgarcaKiril": "Бургас",
+                "Türkçe": "Burgas",
+                "Osmanlıca": "Burgas"
             },
             "geometry": 
             {
@@ -68,7 +80,10 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-                "label": "Dobrich"
+                "BulgarcaLatin": "Dobrich",
+                "BulgarcaKiril": "Добрич",
+                "Türkçe": "Dobrich",
+                "Osmanlıca": "Dobrich"
             },
             "geometry": 
             {
@@ -81,7 +96,10 @@ var BulgaristanŞehirNoktaGeo =
             "type": "Feature",
             "properties": 
             {
-                "label": "Gabrovo",
+                "BulgarcaLatin": "Gabrovo",
+                "BulgarcaKiril": "Габрово",
+                "Türkçe": "Gabrovo",
+                "Osmanlıca": "Gabrovo"
             },
             "geometry": 
             {
@@ -99,11 +117,15 @@ function MarkerClickFeature(feature, layer)
         click: function()
         {
             NoktaÇekmecesi();
-            console.log(feature.properties.label)
+            document.getElementById("nokta-büyükBaşlık").innerHTML = feature.properties.BulgarcaLatin;
+            document.getElementById("nokta-altBaşlık").innerHTML = feature.properties.BulgarcaKiril;
+            document.getElementById("nokta-dillerTR").innerHTML ="Türkçe: " + feature.properties.Türkçe;
+            document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
+            document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates;
         }
     });
 
-    layer.bindTooltip(feature.properties.label, {permanent: true, direction: "top", className: "nokta-label"}).openTooltip();
+    layer.bindTooltip(feature.properties.Türkçe, {permanent: true, direction: "top", className: "nokta-label"}).openTooltip();
 }
 
 var BulgaristanŞehirNokta = L.geoJSON(BulgaristanŞehirNoktaGeo, {onEachFeature: MarkerClickFeature})
