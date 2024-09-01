@@ -11,6 +11,22 @@ class Nokta
     }
 }
 
+class Feature
+{
+    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam)
+    {
+        this.type = "Feature";
+        this.properties = {};
+        this.properties["BulgarcaLatin"] = Bulgarca_Latin;
+        this.properties["BulgarcaKiril"] = Bulgarca_Kiril;
+        this.properties["Türkçe"] = Türkçe;
+        this.properties["Osmanlıca"] = Osmanlıca;
+        this.geometry = {};
+        this.geometry["type"] = "Point";
+        this.geometry["coordinates"] = [boylam, enlem];
+    }
+}
+
 var noktalarJSON =
 {
     "type": "FeatureCollection",
@@ -20,21 +36,7 @@ var noktalarJSON =
 function NoktalarıBaşlat()
 {
     let noktalar = [];
-    noktalar.push(new Nokta("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
-    noktalar.push(new Nokta("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
-
-    for (i = 0; i < noktalar.length; i++)
-    {
-        let özellik = {};
-        özellik["type"] = "Feature";
-        özellik["properties"] = {};
-        özellik.properties["BulgarcaLatin"] = noktalar[i].Bulgarca_Latin;
-        özellik.properties["BulgarcaKiril"] = noktalar[i].Bulgarca_Kiril;
-        özellik.properties["Türkçe"] = noktalar[i].Türkçe;
-        özellik.properties["Osmanlıca"] = noktalar[i].Osmanlıca;
-        özellik["geometry"] = {};
-        özellik.geometry["type"] = "Point";
-        özellik.geometry["coordinates"] = [noktalar[i].boylam, noktalar[i].enlem];
-        noktalarJSON.features.push(özellik);
-    }
+    noktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
+    noktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
+    noktalarJSON.features = noktalar;
 }
