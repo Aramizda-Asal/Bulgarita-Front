@@ -38,5 +38,9 @@ function NoktalarıBaşlat()
     let noktalar = [];
     noktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
     noktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
+    noktalar.push(new Feature("Blagoevgrad", "Благоевград", "Blagoevgrad", "BlagoevgradO", 41.75027778,23.25027778));
+    noktalar.push(new Feature("Burgas", "Бургас", "Burgas", "BurgasO", 42.50027778, 27.25027778));
+    noktalar.push(new Feature("Dobrich", "Добрич", "Dobrich", "DobrichO",43.58361111, 27.8061111));
+    noktalar.push(new Feature("Gabrovo", "Габрово", "Gabrovo", "GabrovoO", 42.91694444, 25.25027778))
     noktalarJSON.features = noktalar;
 }
