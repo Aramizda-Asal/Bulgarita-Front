@@ -7,6 +7,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+//Haritadaki noktalara tıklandığında noktalar ile ilgili bilgileri gösteren çekmeceyi açan fonksiyon.
 function MarkerClickFeature(feature, layer) 
 {
     layer.on
@@ -18,19 +19,21 @@ function MarkerClickFeature(feature, layer)
             document.getElementById("nokta-altBaşlık").innerHTML = feature.properties.BulgarcaKiril;
             document.getElementById("nokta-dillerTR").innerHTML ="Türkçe: " + feature.properties.Türkçe;
             document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
-            document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1] + ", " + feature.geometry.coordinates[0];
-            document.getElementById("nokta-link").href = "https://www.google.com/maps/@" + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",13z?entry=ttu";
+            document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1].toFixed(6) + ", " + feature.geometry.coordinates[0].toFixed(6);
+            document.getElementById("nokta-link").href = "https://www.google.com/maps/@" + feature.geometry.coordinates[1].toFixed(6) + "," + feature.geometry.coordinates[0].toFixed(6) + ",13z?entry=ttu";
         }
     });
 
     layer.bindTooltip(feature.properties.Türkçe, {permanent: true, direction: "top", className: "nokta-label"}).openTooltip();
 }
 
+//Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
 var BulgaristanŞehirNokta = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
 BulgaristanŞehirNokta.addTo(map)
 
 
+//Haritadaki şehir, kasaba noktalarının zoomlara orantılı olarak gösterilip, gösterilmemesini ayarlayan fonksiyon.
 map.on
 ('zoomend', function()
         {
