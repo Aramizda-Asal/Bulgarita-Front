@@ -54,7 +54,7 @@ async function NoktalarıBaşlat()
     await ŞehirNoktalarınıÇek();
     await KöyNoktalarınıÇek();
     await KasabaNoktalarınıÇek();
-    
+
     /*
     Şehirnoktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
     Şehirnoktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
@@ -73,8 +73,8 @@ async function NoktalarıBaşlat()
     BulgaristanKasabaNokta = L.geoJSON(KasabanoktalarJSON, {onEachFeature: MarkerClickFeature});
 
     BulgaristanŞehirNokta.addTo(map);
-    BulgaristanKöyNokta.addTo(map);
-    BulgaristanKasabaNokta.addTo(map);
+    //BulgaristanKöyNokta.addTo(map);
+    //BulgaristanKasabaNokta.addTo(map);
 }
 
 

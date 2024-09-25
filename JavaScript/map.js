@@ -1,4 +1,4 @@
-var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 10);
+var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 8);
 var zoom_controls = new L.Control.Zoom({ position: 'bottomright' });
 zoom_controls.addTo(map);
 
@@ -30,6 +30,10 @@ function MarkerClickFeature(feature, layer)
 //Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
 
+var BulgaristanŞehirNokta;
+var BulgaristanKöyNokta;
+var BulgaristanKasabaNokta;
+
 //!!Alttaki işlem noktalar.js'de şehir noktalarını başlat fonksiyonuna taşındı şimdilik burda da tutuluyor. 
 //var BulgaristanŞehirNokta  = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
 //BulgaristanŞehirNokta.addTo(map)
@@ -40,15 +44,19 @@ map.on
 ('zoomend', function()
         {
             var Currentzoom = map.getZoom();
-            if(Currentzoom >= 14)
+            if(Currentzoom >= 10)
             {
                 map.removeLayer(BulgaristanŞehirNokta);
+                BulgaristanKöyNokta.addTo(map);
+                BulgaristanKasabaNokta.addTo(map);
             }
             else
             {
                 if(!map.hasLayer(BulgaristanŞehirNokta))
                 {
                     BulgaristanŞehirNokta.addTo(map)
+                    map.removeLayer(BulgaristanKöyNokta);
+                    map.removeLayer(BulgaristanKasabaNokta);
                 }
             }
         }
