@@ -167,3 +167,16 @@ function Ara()
         AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);
     }
 }
+
+function İsimliNoktasınaGit(Bulgarca_Latin)
+{
+    let koordinat;
+    for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
+    {  
+        if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)
+        {
+            koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;
+        }
+    }
+    map.setView([koordinat[1],koordinat[0]],12);
+}

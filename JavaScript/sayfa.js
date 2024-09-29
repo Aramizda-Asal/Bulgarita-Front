@@ -96,12 +96,16 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
     document.getElementById("ara-çekmece").style.display = "block";
 
+    let satırHTML_1 = "<div class=\"ara-çekmece-satır\" onclick=\"İsimliNoktasınaGit('";
+    let satırHTML_2 = "')\">";
+    let satırHTML_3 = "</div>";
+
     let aramaSonucuVar = false;
     if(ilkİçerenler.length > 0)
     {
         for(let i = 0; i < ilkİçerenler.length; i++)
         {
-            document.getElementById("ara-çekmece").innerHTML = "<div class=\"ara-çekmece-satır\">"+ ilkİçerenler[i] +"</div>";
+            document.getElementById("ara-çekmece").innerHTML = satırHTML_1 + ilkİçerenler[i] + satırHTML_2 + ilkİçerenler[i] + satırHTML_3;
         }
         aramaSonucuVar = true;
     }
@@ -113,7 +117,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
     {
         for(let i = 0; i < Ortaİçerenler.length; i++)
         {
-            document.getElementById("ara-çekmece").innerHTML += "<div class=\"ara-çekmece-satır\">"+ Ortaİçerenler[i] +"</div>";
+            document.getElementById("ara-çekmece").innerHTML += satırHTML_1 + Ortaİçerenler[i] + satırHTML_2 + Ortaİçerenler[i] + satırHTML_3;
         }
         aramaSonucuVar = true;
     }
@@ -125,7 +129,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
     {
         for(let i = 0; i < sonİçerenler.length; i++)
         {
-            document.getElementById("ara-çekmece").innerHTML += "<div class=\"ara-çekmece-satır\">"+ sonİçerenler[i] +"</div>";
+            document.getElementById("ara-çekmece").innerHTML += satırHTML_1 + sonİçerenler[i] + satırHTML_2 + sonİçerenler[i] + satırHTML_3;
         }
         aramaSonucuVar = true;
     }
