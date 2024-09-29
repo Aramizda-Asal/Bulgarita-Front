@@ -65,9 +65,11 @@ map.on
 function Ara() 
 {
     let YazılanŞey = document.getElementById("aramaÇubuğu").value
+    YazılanŞey = YazılanŞey.toLowerCase();
     if(YazılanŞey.trim().length == 0)      // Alfanümerik olmayan bir tuşa basınca da tekrar kontrol gönderiyor.
     {
         console.log("Boş")
+        AraÇekmecesiniKapat();
     }
     else
     {
@@ -75,19 +77,19 @@ function Ara()
         //Şehir noktalarında var mı kontrolü.
         for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
         {  
-            if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin.includes(YazılanŞey))
+            if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.BulgarcaKiril.includes(YazılanŞey))
+            else if(ŞehirnoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.Türkçe.includes(YazılanŞey))
+            else if(ŞehirnoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.Osmanlıca.includes(YazılanŞey))
+            else if(ŞehirnoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
             }
@@ -97,19 +99,19 @@ function Ara()
         //Köy noktalarında var mı kontrolü.
         for(let i = 0; i<KöynoktalarJSON.features.length; i++)
         {
-            if(KöynoktalarJSON.features[i].properties.BulgarcaLatin.includes(YazılanŞey))
+            if(KöynoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KöynoktalarJSON.features[i].properties.BulgarcaKiril.includes(YazılanŞey))
+            else if(KöynoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KöynoktalarJSON.features[i].properties.Türkçe.includes(YazılanŞey))
+            else if(KöynoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KöynoktalarJSON.features[i].properties.Osmanlıca.includes(YazılanŞey))
+            else if(KöynoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
             }
@@ -118,19 +120,19 @@ function Ara()
         //Kasaba noktalarında var mı kontrolü.
         for(let i = 0; i<KasabanoktalarJSON.features.length; i++)
         {
-            if(KasabanoktalarJSON.features[i].properties.BulgarcaLatin.includes(YazılanŞey))
+            if(KasabanoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KasabanoktalarJSON.features[i].properties.BulgarcaKiril.includes(YazılanŞey))
+            else if(KasabanoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KasabanoktalarJSON.features[i].properties.Türkçe.includes(YazılanŞey))
+            else if(KasabanoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
             }
-            else if(KasabanoktalarJSON.features[i].properties.Osmanlıca.includes(YazılanŞey))
+            else if(KasabanoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
             {
                 İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
             }
@@ -145,7 +147,7 @@ function Ara()
         for(let i = 0; i<İçerenler.length; i++)
         {
             
-            if(İçerenler[i].substring(0, YazılanŞey.length) == YazılanŞey)
+            if(İçerenler[i].substring(0, YazılanŞey.length).toLowerCase() == YazılanŞey)
             {
                 ilkİçerenler.push(İçerenler[i]);
             }
