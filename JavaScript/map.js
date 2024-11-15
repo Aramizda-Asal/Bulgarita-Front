@@ -1,4 +1,4 @@
-var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 10);
+var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 8);
 var zoom_controls = new L.Control.Zoom({ position: 'bottomright' });
 zoom_controls.addTo(map);
 
@@ -30,6 +30,10 @@ function MarkerClickFeature(feature, layer)
 //Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
 
+var BulgaristanŞehirNokta;
+var BulgaristanKöyNokta;
+var BulgaristanKasabaNokta;
+
 //!!Alttaki işlem noktalar.js'de şehir noktalarını başlat fonksiyonuna taşındı şimdilik burda da tutuluyor. 
 //var BulgaristanŞehirNokta  = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
 //BulgaristanŞehirNokta.addTo(map)
@@ -40,16 +44,143 @@ map.on
 ('zoomend', function()
         {
             var Currentzoom = map.getZoom();
-            if(Currentzoom >= 14)
+            if(Currentzoom >= 10)
             {
                 map.removeLayer(BulgaristanŞehirNokta);
+                BulgaristanKöyNokta.addTo(map);
+                BulgaristanKasabaNokta.addTo(map);
             }
             else
             {
                 if(!map.hasLayer(BulgaristanŞehirNokta))
                 {
                     BulgaristanŞehirNokta.addTo(map)
+                    map.removeLayer(BulgaristanKöyNokta);
+                    map.removeLayer(BulgaristanKasabaNokta);
                 }
             }
         }
 )
+
+function Ara() 
+{
+    let YazılanŞey = document.getElementById("aramaÇubuğu").value
+    YazılanŞey = YazılanŞey.toLowerCase();
+    if(YazılanŞey.trim().length == 0)      // Alfanümerik olmayan bir tuşa basınca da tekrar kontrol gönderiyor.
+    {
+        console.log("Boş")
+        AraÇekmecesiniKapat();
+    }
+    else
+    {
+        let İçerenler = [];
+        //Şehir noktalarında var mı kontrolü.
+        for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
+        {  
+            if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(ŞehirnoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(ŞehirnoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(ŞehirnoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+        }
+
+        
+        //Köy noktalarında var mı kontrolü.
+        for(let i = 0; i<KöynoktalarJSON.features.length; i++)
+        {
+            if(KöynoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KöynoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KöynoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KöynoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+        }
+        
+        //Kasaba noktalarında var mı kontrolü.
+        for(let i = 0; i<KasabanoktalarJSON.features.length; i++)
+        {
+            if(KasabanoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KasabanoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KasabanoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+            else if(KasabanoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
+            {
+                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
+            }
+        }
+
+        //Oluşturulan yeni dizice girilen yazının boyutu kadar ilk ve son karekterelere bakılarak bir düzen yapılacak !!!!Kendime Not!!!
+        //Harflerin büyük küçüklüğü önem arz etmemeli. !!!Kendime Not!!!
+
+        let ilkİçerenler = [];
+        let sonİçerenler = [];
+        let Ortaİçerenler = [];
+        for(let i = 0; i<İçerenler.length; i++)
+        {
+            
+            if(İçerenler[i].substring(0, YazılanŞey.length).toLowerCase() == YazılanŞey)
+            {
+                ilkİçerenler.push(İçerenler[i]);
+            }
+            else if(İçerenler[i].substring(YazılanŞey.length, İçerenler[i].length-YazılanŞey.length).includes(YazılanŞey))
+            {
+                Ortaİçerenler.push(İçerenler[i]);
+            }
+            else
+            {
+                sonİçerenler.push(İçerenler[i]);
+            }
+            
+            
+        }
+        console.log("İlk İçerenler " + ilkİçerenler);
+        console.log("Orta İçerenler " + Ortaİçerenler);
+        console.log("Son İçerenler " + sonİçerenler);
+        
+        AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);//Ara çekmecesini açar.
+    }
+}
+
+function İsimliNoktasınaGit(Bulgarca_Latin)//Ekranı, ismi verilen bölgeye götüren fonksiyon.
+{
+    let koordinat;
+    for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
+    {  
+        if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)//Verilen isimle eşleşen noktayı sorgular. 
+        {
+            koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;//Eşleşen noktanın koordinatını alır.
+        }
+    }
+
+    let zoom = map.getZoom(); //Mevcut zoom'u alır. 
+    map.setView([koordinat[1],koordinat[0]],zoom);
+}
