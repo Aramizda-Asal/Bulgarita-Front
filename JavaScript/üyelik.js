@@ -31,7 +31,6 @@ function GirişYap()
     let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
     let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
-    alert(url)
     fetch(url, {method: 'GET'})
         .then(response => response.json())
         .then((response) => {
@@ -43,7 +42,7 @@ function GirişYap()
             ÇerezOluştur("OTURUM", gelen.Kimlik, çerez_sonu);
             if(response == "")
             {
-                alert("Reddedildi")
+                alert("Reddedildi");
             }
         })
 }
