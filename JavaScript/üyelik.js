@@ -25,26 +25,28 @@ function KayitOl()
     }
 }
 
-function GirişYap()
+async function GirişYap()
 {
     let kullanıcıAdı = encodeURIComponent(document.getElementById("kullanıcıadı-giriş").value);
     let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
-    let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
-    fetch(url, {method: 'GET'})
-        .then(response => response.json())
-        .then((response) => {
-            console.log(response);
-            let gelen = JSON.parse(response);
-            console.log(gelen);
-            let çerez_sonu = new Date(gelen.Bitiş);
-            ÇerezOluştur("KULLANICI", gelen.Kullanıcı.Kimlik, çerez_sonu);
-            ÇerezOluştur("OTURUM", gelen.Kimlik, çerez_sonu);
-            if(response == "")
-            {
-                alert("Reddedildi");
-            }
-        })
+    let url = `http://localhost:5130/Oturum/GirişYap/${kullanıcıAdı}/${parola}`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if (yanıt.status === 200)
+    {
+        let yanıt_json = await yanıt.json();
+        let oturum = JSON.parse(yanıt_json);
+        let çerez_sonu = new Date(oturum.Bitiş);
+        ÇerezOluştur("KULLANICI", oturum.Kullanıcı.Kimlik, çerez_sonu);
+        ÇerezOluştur("OTURUM", oturum.Kimlik, çerez_sonu);
+        şimdi_kullanan = oturum.Kullanıcı;
+    }
+    else
+    {
+        alert("Giriş Reddedildi.");
+    }
+    ArayüzüKişiselleştir();
 }
 
 async function OturumAçık()

@@ -1,10 +1,15 @@
-var şimdi_kullanan = null;
+let şimdi_kullanan = null;
 
 async function Açılış()
 {
     await OturumAçık();
-    KullanıcıÇekmecesiniKişiselleştir();
+    ArayüzüKişiselleştir();
     
+}
+
+function ArayüzüKişiselleştir()
+{
+    KullanıcıÇekmecesiniKişiselleştir();
 }
 
 function KullanıcıÇekmecesiniKişiselleştir()
