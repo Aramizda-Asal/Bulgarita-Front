@@ -68,14 +68,18 @@ function NoktaÇekmecesiniKapat()
     nokta_çekmecesi_açık = false;
 }
 
+let KaydolBölümüAçık= false;
 function Göster_KayıtOl()
 {
+    KaydolBölümüAçık = true;
+    document.getElementById("kullanıcı-çekmecesi-başlık").innerHTML = "Kaydol";
     document.getElementById("giriş-yap").style.display = "none";
     document.getElementById("kayıt-ol").style.display = "block";
 }
-
 function Göster_GirişYap()
 {
+    KaydolBölümüAçık = false;
+    document.getElementById("kullanıcı-çekmecesi-başlık").innerHTML = "Giriş Yap";
     document.getElementById("kayıt-ol").style.display = "none";
     document.getElementById("giriş-yap").style.display = "block";
 }

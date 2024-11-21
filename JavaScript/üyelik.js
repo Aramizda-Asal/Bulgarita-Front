@@ -46,3 +46,24 @@ function GirişYap()
             }
         })
 }
+
+async function OturumAçık()
+{
+    let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
+    let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
+
+    let url = `http://localhost:5130/Oturum/OturumAçık/${oturum_kimliği}/${kullanıcı_kimliği}`;
+    console.log(url);
+    response = await fetch(url, {method: 'GET'});
+    if (response.status === 200)
+    {
+        let jresponse = await response.json();
+        şimdi_kullanan = JSON.parse(jresponse);
+        return true;
+    }
+    else
+    {
+        şimdi_kullanan = null;
+        return false;
+    }
+}
