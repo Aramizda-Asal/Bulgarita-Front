@@ -5,6 +5,16 @@ function ÇerezOluştur(ad, değer, son_tarih)
     console.log(document.cookie);
 }
 
+function ÇerezSil(ad)
+{
+    if (typeof(ad) === "string")
+    {
+        let milat = new Date(0);
+        document.cookie = `${ad}=; expires=${milat.toUTCString()}; path=/; SameSite=Strict;`;
+        console.log(document.cookie);
+    }
+}
+
 function ÇerezDeğeri(ad)
 {
     if (typeof(ad) === "string")
