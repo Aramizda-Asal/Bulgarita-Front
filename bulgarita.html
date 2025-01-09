@@ -15,6 +15,7 @@
         <script src="JavaScript/sayfa.js"></script>
         <script src="JavaScript/üyelik.js"></script>
         <script src="JavaScript/noktalar.js"></script>
+        <script src="JavaScript/kişiselleştirici.js"></script>
 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -25,7 +26,7 @@
         crossorigin=""></script>
     </head>
 
-    <body style="margin: 0; padding: 0;">
+    <body style="margin: 0; padding: 0;" onload="Açılış()">
 
         <header class="sayfa-başlığı">
             <div class="başlık-giriş">
@@ -49,44 +50,52 @@
             <div class="çekmece-içi">
             <div class="çekmece-içorta">
 
-                <div id="giriş-yap">
-                    <h4 class="Başlık2">Başlık</h4>
-                    <p class="Yazı1">Bilgiler</p>
+                <h4 id="kullanıcı-çekmecesi-başlık" class="Başlık2">Giriş Yap</h4>
 
-                    <form class="kutular-girişyap">
-                        <label for="kullanıcıadı-giriş" class="yazılar-girişyap">Kullanıcı Adı/E-posta:</label><br>
-                        <input type="text" id="kullanıcıadı-giriş"><br>
-                        <label for="parola-giriş" class="yazılar-girişyap">Parola:</label><br>
-                        <input type="password" id="parola-giriş"><br><br>
-                        <input type="button" class="D1-turkuaz" id="düğme-girişyap" value="Giriş Yap" onclick="GirişYap()"/>
-                        <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Kayıt Ol" onclick="Göster_KayıtOl()"/>
-                    </form>
+                <div id="kullanıcı-çekmecesi-anonim" style="display: block;">
+                    <div id="giriş-yap">
+                        
+                        <p class="Yazı1">Bilgiler</p>
+
+                        <form class="kutular-girişyap">
+                            <label for="kullanıcıadı-giriş" class="yazılar-girişyap">Kullanıcı Adı/E-posta:</label><br>
+                            <input type="text" id="kullanıcıadı-giriş"><br>
+                            <label for="parola-giriş" class="yazılar-girişyap">Parola:</label><br>
+                            <input type="password" id="parola-giriş"><br><br>
+                            <input type="button" class="D1-turkuaz" id="düğme-girişyap" value="Giriş Yap" onclick="GirişYap()"/>
+                            <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Kaydol" onclick="Göster_KayıtOl()"/>
+                        </form>
+                    </div>
+
+                    <div id="kayıt-ol">
+
+                        <p class="Yazı1">Bilgiler</p>
+
+                        <form class="kutular-kayitol">
+                            <label for="kullanıcıadı-kayıt" class="yazılar-kayitol">Kullanıcı Adı:</label><br>
+                            <input type="text" id="kullanıcıadı-kayıt"><br>
+                            <label for="eposta-kayıt" class="yazılar-kayitol">E-Posta:</label><br>
+                            <input type="text" id="eposta-kayıt"><br>
+                            <label for="parola-kayıt" class="yazılar-kayitol">Parola:</label><br>
+                            <input type="password" id="parola-kayıt"><br>
+                            <label for="parola-kayıt-tekrar" class="yazılar-kayitol">Parola Tekrar:</label><br>
+                            <input type="password" id="parola-kayıt-tekrar"><br><br>
+                            <input type="button" class="D1-turkuaz" id="düğme-kayıtol" value="Kaydol" onclick="KayitOl()"/>
+                            <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Giriş Yap" onclick="Göster_GirişYap()"/>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="kayıt-ol">
-                    <h4 class="Başlık2">Başlık</h4>
-                    <p class="Yazı1">Bilgiler</p>
-                    <form class="kutular-kayitol">
-                        <label for="kullanıcıadı-kayıt" class="yazılar-kayitol">Kullanıcı Adı:</label><br>
-                        <input type="text" id="kullanıcıadı-kayıt"><br>
-                        <label for="eposta-kayıt" class="yazılar-kayitol">E-Posta:</label><br>
-                        <input type="text" id="eposta-kayıt"><br>
-                        <label for="parola-kayıt" class="yazılar-kayitol">Parola:</label><br>
-                        <input type="password" id="parola-kayıt"><br>
-                        <label for="parola-kayıt-tekrar" class="yazılar-kayitol">Parola Tekrar:</label><br>
-                        <input type="password" id="parola-kayıt-tekrar"><br><br>
-                        <input type="button" class="D1-turkuaz" id="düğme-kayıtol" value="Kayıt Ol" onclick="KayitOl()"/>
-                        <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Giriş Yap" onclick="Göster_GirişYap()"/>
-                    </form>
-                </div>
+                <div id="kullanıcı-çekmecesi-kişisel" style="display: none;">
+                    <button id="düğme-ÇıkışYap" class="D1-kızıl butonlar-profil" onclick="ÇıkışYap()">Çıkış Yap</button>
+                    <div id="kullanıcı-çekmece-profil">
+                        <button class="butonlar-profil" onclick="AyarlaraGit()">Ayarlar</button>
+                    </div>
 
-                <div id="kullanıcı-çekmece-profil">
-                    <button class="butonlar-profil" onclick="AyarlaraGit()">Ayarlar</button>
-                </div>
-
-                <div id="kullanıcı-çekmece-ayarlar">
-                    <button class="butonlar-profil">Kullanıcı Adı Değiştir</button>
-                    <button class="butonlar-profil">Parola Değiştir</button>
+                    <div id="kullanıcı-çekmece-ayarlar">
+                        <button class="butonlar-profil">Kullanıcı Adı Değiştir</button>
+                        <button class="butonlar-profil">Parola Değiştir</button>
+                    </div>
                 </div>
             </div>
             </div>

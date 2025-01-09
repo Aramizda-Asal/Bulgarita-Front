@@ -25,25 +25,68 @@ function KayitOl()
     }
 }
 
-function GirişYap()
+async function GirişYap()
 {
     let kullanıcıAdı = encodeURIComponent(document.getElementById("kullanıcıadı-giriş").value);
     let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
-    let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
-    alert(url)
-    fetch(url, {method: 'GET'})
-        .then(response => response.json())
-        .then((response) => {
-            console.log(response);
-            let gelen = JSON.parse(response);
-            console.log(gelen);
-            let çerez_sonu = new Date(gelen.Bitiş);
-            ÇerezOluştur("KULLANICI", gelen.Kullanıcı.Kimlik, çerez_sonu);
-            ÇerezOluştur("OTURUM", gelen.Kimlik, çerez_sonu);
-            if(response == "")
-            {
-                alert("Reddedildi")
-            }
-        })
+    let url = `http://localhost:5130/Oturum/GirişYap/${kullanıcıAdı}/${parola}`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if (yanıt.status === 200)
+    {
+        let yanıt_json = await yanıt.json();
+        let oturum = JSON.parse(yanıt_json);
+        let çerez_sonu = new Date(oturum.Bitiş);
+        ÇerezOluştur("KULLANICI", oturum.Kullanıcı.Kimlik, çerez_sonu);
+        ÇerezOluştur("OTURUM", oturum.Kimlik, çerez_sonu);
+        şimdi_kullanan = oturum.Kullanıcı;
+    }
+    else
+    {
+        alert("Giriş Reddedildi.");
+    }
+
+    document.getElementById("kullanıcıadı-giriş").value = "";
+    document.getElementById("parola-giriş").value = "";
+
+    ArayüzüKişiselleştir();
+}
+async function ÇıkışYap()
+{
+    if (şimdi_kullanan !== null)
+    {
+        let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
+        let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
+
+        let url = `http://localhost:5130/Oturum/OturumKapat/${oturum_kimliği}/${kullanıcı_kimliği}`;
+        let yanıt = await fetch(url, {method: 'POST'});
+        if (yanıt.status === 200)
+        {
+            ÇerezSil("KULLANICI");
+            ÇerezSil("OTURUM");
+            şimdi_kullanan = null;
+            ArayüzüKişiselleştir();
+        }
+    }
+}
+
+async function OturumAçık()
+{
+    let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
+    let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
+
+    let url = `http://localhost:5130/Oturum/OturumAçık/${oturum_kimliği}/${kullanıcı_kimliği}`;
+    let response = await fetch(url, {method: 'GET'});
+    if (response.status === 200)
+    {
+        let jresponse = await response.json();
+        şimdi_kullanan = JSON.parse(jresponse);
+        return true;
+    }
+    else
+    {
+        şimdi_kullanan = null;
+        return false;
+    }
 }
