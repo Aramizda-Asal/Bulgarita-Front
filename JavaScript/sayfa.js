@@ -68,6 +68,64 @@ function NoktaÇekmecesiniKapat()
     nokta_çekmecesi_açık = false;
 }
 
+function FavoriButonuDoldur()
+{
+    let buton = document.getElementById("favori-butonu");
+    let imgElement = buton.querySelector('#favori-resmi').querySelector('img');
+    let spanElement = buton.querySelector('#favori-yazisi');
+    imgElement.src = "doluyildiz.png";
+    spanElement.textContent = "Favorilerden Çıkar";
+    buton.setAttribute('onclick', 'FavorilerdenCikar(this)');
+}
+
+function FavoriButonuBosalt()
+{
+    let buton = document.getElementById("favori-butonu");
+    let imgElement = buton.querySelector('#favori-resmi').querySelector('img');
+    let spanElement = buton.querySelector('#favori-yazisi');
+    imgElement.src = "bosyildiz.png";
+    spanElement.textContent = "Favorilere Ekle";
+    buton.setAttribute('onclick', 'FavorilereEkle(this)');
+}
+
+async function FavorilereEkle(button)
+{
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let konum_kimliği = button.getAttribute('konum-kimliği');
+    
+    let url = `http://localhost:5130/Favori/FavoriEkle/${kullanıcı_kimliği}/${konum_kimliği}`;   
+    let yanıt = await fetch(url, {method: 'POST'});
+
+    if (yanıt.status === 201)
+    {
+        alert("Eklendi")
+        FavoriButonuDoldur();
+    }
+    else
+    {
+        alert("Eklenemedi");
+    }
+}
+
+async function FavorilerdenCikar(button)
+{
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let konum_kimliği = button.getAttribute('konum-kimliği');
+
+    let url = `http://localhost:5130/Favori/FavorilerdenCikar/${kullanıcı_kimliği}/${konum_kimliği}`;
+    let yanıt = await fetch(url, {method: 'DELETE'});
+
+    if (yanıt.status === 201)
+    {
+        alert("Cikarildi")
+        FavoriButonuBosalt();
+    }
+    else
+    {
+        alert("Cikarilamadi");
+    }
+}
+
 let KaydolBölümüAçık= false;
 function Göster_KayıtOl()
 {
