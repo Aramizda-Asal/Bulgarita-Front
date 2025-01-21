@@ -12,7 +12,7 @@ function MarkerClickFeature(feature, layer)
 {
     layer.on
     ({
-        click: function()
+        click: async function()
         {
             NoktaÇekmecesi();
             document.getElementById("nokta-büyükBaşlık").innerHTML = feature.properties.BulgarcaLatin;
@@ -21,6 +21,19 @@ function MarkerClickFeature(feature, layer)
             document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
             document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1].toFixed(6) + ", " + feature.geometry.coordinates[0].toFixed(6);
             document.getElementById("favori-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
+            
+            let url = `http://localhost:5130/Favori/SatirVarMi/${ÇerezDeğeri("KULLANICI")}/${feature.properties.Kimlik}`;   
+            console.log(url);
+            let yanıt = await fetch(url, {method: 'POST'});
+            if (yanıt.status === 200)
+            {
+                FavoriButonuDoldur()
+            }
+            else
+            {
+                FavoriButonuBosalt()
+            }
+
             document.getElementById("nokta-link").href = "https://www.google.com/maps/@" + feature.geometry.coordinates[1].toFixed(6) + "," + feature.geometry.coordinates[0].toFixed(6) + ",13z?entry=ttu";
         }
     });
