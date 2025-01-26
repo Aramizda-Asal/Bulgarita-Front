@@ -68,6 +68,20 @@
     display: block;
 }
 
+.çekmece-içi input[type="text"], .çekmece-içi input[type="password"]
+{
+    font-size: medium;
+    font-weight: bold;
+    outline: none;
+    color: #158479;
+    background-color: azure;
+    border: 3px solid azure;
+    border-radius: 9px;
+    padding: 0.2em 0.6em;
+
+    border-bottom-color: #158479aa;
+}
+
 #kullanıcı-çekmecesi input
 {
     margin: 0% auto 4%;
