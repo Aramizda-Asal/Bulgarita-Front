@@ -13,6 +13,11 @@ function KullanıcıÇekmecesi()
 }
 function KullanıcıÇekmecesiniAç()
 {
+    if (şimdi_kullanan !== null)
+    {
+        KÇAnaSayfa();
+    }
+
     let çekmece = document.getElementById("kullanıcı-çekmecesi");
     if (visualViewport.height > visualViewport.width)
     {
@@ -142,6 +147,9 @@ function Göster_GirişYap()
     document.getElementById("giriş-yap").style.display = "block";
 }
 
+/**
+ * Kullanıcı çekmecesinin kişisel sayfalarının tümünü gizler.
+ */
 function KişiselÇekmeceSayfalarınıKapat()
 {
     let sayfalar = document.getElementsByClassName("kişisel-çekmece-sayfası");
@@ -153,6 +161,9 @@ function KişiselÇekmeceSayfalarınıKapat()
         }
     }
 }
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü ana sayfa yapar.
+ */
 function KÇAnaSayfa()
 {
     KişiselÇekmeceSayfalarınıKapat();
@@ -162,6 +173,9 @@ function KÇAnaSayfa()
         ana_sayfa.style.display = "block";
     }
 }
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü ayarlar sayfası yapar.
+ */
 function KÇAyarlarSayfası()
 {
     KişiselÇekmeceSayfalarınıKapat();
@@ -171,12 +185,32 @@ function KÇAyarlarSayfası()
         ayarlar_sayfası.style.display = "block";
     }
 }
-
-function AyarlaraGit()
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü parola değiştirme sayfası yapar.
+ */
+function KÇParolaDeğiştirSayfası()
 {
-    document.getElementById("kullanıcı-çekmece-ayarlar").style.display = "block"
-    document.getElementById("kullanıcı-çekmece-profil").style.display = "none"
+    KişiselÇekmeceSayfalarınıKapat();
+    let ParolaDeğiştir_sayfası = document.getElementById("kişisel-çekmece-ParolaDeğiştir");
+    if (ParolaDeğiştir_sayfası !== null)
+    {
+        ParolaDeğiştir_sayfası.style.display = "block";
+    }
 }
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü kullanıcı adı değiştirme sayfası yapar.
+ */
+function KÇKullanıcıAdıDeğiştirSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let KullanıcıAdıDeğiştir_sayfası = document.getElementById("kişisel-çekmece-KullanıcıAdıDeğiştir");
+    if (KullanıcıAdıDeğiştir_sayfası !== null)
+    {
+        KullanıcıAdıDeğiştir_sayfası.style.display = "block";
+    }
+}
+
+
 
 function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   

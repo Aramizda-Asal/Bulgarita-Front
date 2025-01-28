@@ -1,4 +1,4 @@
-function KayitOl()
+function Kaydol()
 {
     let KullanıcıAdı = document.getElementById("kullanıcıadı-kayıt").value
     let E_Posta = document.getElementById("eposta-kayıt").value
@@ -87,6 +87,66 @@ async function OturumAçık()
     else
     {
         şimdi_kullanan = null;
+        return false;
+    }
+}
+
+/**
+ * Parola değiştirme sayfasındaki form doldurulduktan sonra değişim isteği gönderir.
+ * 
+ * @returns Parola başarıyla değişirse true, değişmezse false.
+ */
+async function ParolaDeğiştir()
+{
+    if (şimdi_kullanan === null)
+    {
+        Açılış();
+        return false;
+    }
+
+    let mevcut_parola = document.getElementById("ParolaDeğiştir-MevcutParola");
+    let yeni_parola = document.getElementById("ParolaDeğiştir-YeniParola");
+    let yeni_parola_tekrar = document.getElementById("ParolaDeğiştir-YeniParolaTekrar");
+
+    if (mevcut_parola.value.length > 0 &&
+        yeni_parola.value.length > 0 &&
+        yeni_parola_tekrar.value.length > 0)
+    {
+        if (yeni_parola.value === yeni_parola_tekrar.value)
+        {
+            let kullanıcı_kimliği = encodeURIComponent(şimdi_kullanan.Kimlik);
+            let giden_mevcut = encodeURIComponent(mevcut_parola.value);
+            let giden_yeni = encodeURIComponent(yeni_parola.value);
+
+            let url = `${adres}Kullanıcı/ParolaDeğiştir/${kullanıcı_kimliği}/${giden_mevcut}/${giden_yeni}/`;
+            let yanıt = await fetch(url, {method: "PATCH"});
+
+            if (yanıt.status == 200)
+            {
+                alert("Parolanız başarıyla yenilendi.");
+                KÇAnaSayfa();
+            }
+            else
+            {
+                alert("Parolanız yenilenemedi.");
+            }
+
+            mevcut_parola.value = "";
+            yeni_parola.value = "";
+            yeni_parola_tekrar.value = "";
+            return yanıt.status == 200;
+        }
+        else
+        {
+            alert("Girdiğiniz yeni parolalar aynı değil.");
+            yeni_parola.value = "";
+            yeni_parola_tekrar.value = "";
+            return false;
+        }
+    }
+    else
+    {
+        alert("Parolanızı değiştirebilmek için tüm kutuları doldurmalısınız.");
         return false;
     }
 }

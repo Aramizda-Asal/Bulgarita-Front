@@ -74,6 +74,8 @@ function AnonimdenKişisele()
             kişisel_bölgeler[i].style.display = "block";
         }
     }
+
+    KÇAnaSayfa();
 }
 
 /**
