@@ -21,8 +21,8 @@ function MarkerClickFeature(feature, layer)
             document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
             document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1].toFixed(6) + ", " + feature.geometry.coordinates[0].toFixed(6);
             document.getElementById("favori-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
-            
-            let url = `http://localhost:5130/Favori/SatirVarMi/${ÇerezDeğeri("KULLANICI")}/${feature.properties.Kimlik}`;   
+
+            let url = `http://localhost:5130/Favori/SatirVarMi/${encodeURIComponent(ÇerezDeğeri("KULLANICI"))}/${encodeURIComponent(feature.properties.Kimlik)}`;   
             console.log(url);
             let yanıt = await fetch(url, {method: 'POST'});
             if (yanıt.status === 200)

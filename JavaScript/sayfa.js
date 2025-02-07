@@ -97,8 +97,12 @@ async function FavorilereEkle(button)
 {
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let konum_kimliği = button.getAttribute('konum-kimliği');
+
+    kullanıcı_kimliği = encodeURIComponent(kullanıcı_kimliği);
+    konum_kimliği = encodeURIComponent(konum_kimliği);
     
     let url = `http://localhost:5130/Favori/FavoriEkle/${kullanıcı_kimliği}/${konum_kimliği}`;   
+
     let yanıt = await fetch(url, {method: 'POST'});
 
     if (yanıt.status === 201)
@@ -116,6 +120,9 @@ async function FavorilerdenCikar(button)
 {
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let konum_kimliği = button.getAttribute('konum-kimliği');
+
+    kullanıcı_kimliği = encodeURIComponent(kullanıcı_kimliği);
+    konum_kimliği = encodeURIComponent(konum_kimliği);
 
     let url = `http://localhost:5130/Favori/FavorilerdenCikar/${kullanıcı_kimliği}/${konum_kimliği}`;
     let yanıt = await fetch(url, {method: 'DELETE'});
