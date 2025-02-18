@@ -97,28 +97,40 @@ function Ara()
             {
                 if(NoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
                 {
-                    İçerenler.push(NoktalarJSON.features[i].properties.BulgarcaLatin);
+                    let noktaDict = new Object();
+                    noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
+                    noktaDict["Ad"] = NoktalarJSON.features[i].properties.BulgarcaLatin
+                    İçerenler.push(noktaDict);
                 }
             }
             if(SecilenDil === "Bulgarca-Kiril")
             {
                 if(NoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
                 {
-                    İçerenler.push(NoktalarJSON.features[i].properties.BulgarcaKiril);
+                    let noktaDict = new Object();
+                    noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
+                    noktaDict["Ad"] = NoktalarJSON.features[i].properties.BulgarcaKiril
+                    İçerenler.push(noktaDict);
                 }
             }
             if(SecilenDil === "Türkçe")
             {
                 if(NoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
                 {
-                    İçerenler.push(NoktalarJSON.features[i].properties.Türkçe);
+                    let noktaDict = new Object();
+                    noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
+                    noktaDict["Ad"] = NoktalarJSON.features[i].properties.Türkçe
+                    İçerenler.push(noktaDict);
                 }
             }
             if(SecilenDil === "Osmanlıca")
             {
                 if(NoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
                 {
-                    İçerenler.push(NoktalarJSON.features[i].properties.Osmanlıca);
+                    let noktaDict = new Object();
+                    noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
+                    noktaDict["Ad"] = NoktalarJSON.features[i].properties.Osmanlıca
+                    İçerenler.push(noktaDict);
                 }
             }
         }
@@ -128,11 +140,11 @@ function Ara()
         let Ortaİçerenler = [];
         for(let i = 0; i<İçerenler.length; i++)
         {
-            if(İçerenler[i].substring(0, YazılanŞey.length).toLowerCase() == YazılanŞey)
+            if(İçerenler[i].Ad.substring(0, YazılanŞey.length).toLowerCase() == YazılanŞey)
             {
                 ilkİçerenler.push(İçerenler[i]);
             }
-            else if(İçerenler[i].substring(YazılanŞey.length, İçerenler[i].length-YazılanŞey.length).includes(YazılanŞey))
+            else if(İçerenler[i].Ad.substring(YazılanŞey.length, İçerenler[i].length-YazılanŞey.length).includes(YazılanŞey))
             {
                 Ortaİçerenler.push(İçerenler[i]);
             }
@@ -141,9 +153,6 @@ function Ara()
                 sonİçerenler.push(İçerenler[i]);
             }
         }
-        ilkİçerenler.sort();
-        Ortaİçerenler.sort();
-        sonİçerenler.sort();
 
         AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);//Ara çekmecesini açar.
     }
