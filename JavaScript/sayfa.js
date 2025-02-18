@@ -297,8 +297,6 @@ function AraÇekmecesiniKapat()
 function KÇFavorilerSayfası()
 {
     KişiselÇekmeceSayfalarınıKapat();
-    let favori = document.getElementById("Favori-Bölge-Butonlar");
-    favori.innerHTML = "";
     let ayarlar_sayfası = document.getElementById("kişisel-çekmece-Favoriler");
     if (ayarlar_sayfası !== null)
     {
@@ -309,6 +307,9 @@ function KÇFavorilerSayfası()
 
 async function KÇFavorilerSayfasınıDoldur()
 {
+    let favori = document.getElementById("Favori-Bölge-Butonlar");
+    favori.innerHTML = "";
+
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let url = `http://localhost:5130/Favori/FavorileriGöster`;
@@ -325,6 +326,7 @@ async function KÇFavorilerSayfasınıDoldur()
     if(yanıt.status == 200)
     {
         let div = document.getElementById('Favori-Bölge-Butonlar');
+        let secilenDil = document.getElementById('Favoriler-Dil').value;
         let yanıt_json = await yanıt.json();
         let noktalar = JSON.parse(yanıt_json);
 
@@ -333,7 +335,22 @@ async function KÇFavorilerSayfasınıDoldur()
             let result = NoktayıGetir(favori);
             let button = document.createElement('button');
             button.className = "D1-sarımsı butonlar-profil";
-            button.innerText = result[0].properties.BulgarcaLatin;
+            if(secilenDil === "Bulgarca-Latin")
+            {
+                button.innerText = result[0].properties.BulgarcaLatin;
+            }
+            else if(secilenDil === "Bulgarca-Kiril")
+            {
+                button.innerText = result[0].properties.BulgarcaKiril;
+            }
+            else if(secilenDil === "Türkçe")
+            {
+                button.innerText = result[0].properties.Türkçe;
+            }
+            else if(secilenDil === "Osmanlıca")
+            {
+                button.innerText = result[0].properties.Osmanlıca;
+            }
             button.onclick = function () 
             {
                 NoktayaGit(favori);
