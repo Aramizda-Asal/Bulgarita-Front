@@ -78,8 +78,10 @@ function FavoriButonuDoldur()
     let buton = document.getElementById("favori-butonu");
     let spanElement = buton.querySelector('#favori-yazisi');
     let spanStar = document.getElementById("favori-resmi");
+
     spanElement.textContent = "Favorilerden Çıkar";
-    spanStar.style.color = "#ffd700"; 
+    spanStar.innerHTML = "&#x2605;";
+    spanStar.style.color = "hsl(43, 98%, 63%)"; 
     buton.setAttribute('onclick', 'FavorilerdenCikar(this)');
 }
 
@@ -88,8 +90,10 @@ function FavoriButonuBosalt()
     let buton = document.getElementById("favori-butonu");
     let spanElement = buton.querySelector('#favori-yazisi');
     let spanStar = document.getElementById("favori-resmi");
+
     spanElement.textContent = "Favorilere Ekle";
-    spanStar.style.color = "#3a3a3a"; 
+    spanStar.innerHTML = "&#x2606;";
+    spanStar.style.color = "hsl(43, 98%, 63%)"; 
     buton.setAttribute('onclick', 'FavorilereEkle(this)');
 }
 

@@ -188,16 +188,13 @@
 #favori-resmi 
 {
     color: #3a3a3a; 
+    font-weight: normal;
 
-    transform: scale(1.5); 
+    transform: scale(2); 
     line-height: 1; 
 
-    display: inline-block;
-    vertical-align: middle;
-
-    padding-right: 5%;
-
-    text-shadow: 0.8px 0px #ffd700, -0.8px 0px #ffd700, 0px 0.8px #ffd700, 0px -0.8px #ffd700;
+    left: 18%;
+    position: absolute;
 }
 
 #favori-yazisi 
