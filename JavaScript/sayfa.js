@@ -304,6 +304,220 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
     }
 }
 
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü rol atama sayfası yapar.
+ */
+function KÇRolAtaSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let RolAta_sayfası = document.getElementById("kişisel-çekmece-RolAta");
+    if (RolAta_sayfası !== null)
+    {
+        RolAta_sayfası.style.display = "block";
+    }
+}
+
+async function KÇ_RolAta_RolleriGetir()
+{
+    let kullanıcı = document.getElementById("RolAta-Kullanıcı").value;
+
+    let RollerDropList = document.getElementById("RolAta-Rol");
+    RollerDropList.innerHTML = "";
+
+    let url = `http://localhost:5130/Roller/KullanıcınınRolleriDeğil`;
+    let yanıt = await fetch(url, {
+        method: 'GET',
+        headers: 
+        {
+            'KULLANICI': kullanıcı,
+        }
+    });
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Roller = JSON.parse(yanıtJSON);
+        
+        Roller.forEach((rol) =>
+        {
+            let option = document.createElement('option');
+            option.value = rol;
+            option.text = rol;
+            RollerDropList.appendChild(option);
+        }
+        );
+    }
+    else if(yanıt.status == 204)
+    {
+        let option = document.createElement('option');
+        option.value = "yok";
+        option.text = "Atanabilecek rol yok.";
+        RollerDropList.appendChild(option);
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
+async function KÇ_RolAta() 
+{
+    let rol = document.getElementById("RolAta-Rol").value;
+    let RolAtanacak_Kullanıcı = document.getElementById("RolAta-Kullanıcı").value;
+    RolAtanacak_Kullanıcı = encodeURIComponent(RolAtanacak_Kullanıcı);
+    
+    let url = "";
+
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+
+    switch(rol)
+    {
+        case "Nokta Ekleyici":
+            url = `http://localhost:5130/Roller/RolVer_NoktaEkleyici/${RolAtanacak_Kullanıcı}`;
+            break;
+        case "Nokta Düzenleyici":
+            url = `http://localhost:5130/Roller/RolVer_NoktaDüzenleyici/${RolAtanacak_Kullanıcı}`;
+            break;
+        case "Nokta Silici":
+            url = `http://localhost:5130/Roller/RolVer_NoktaSilici/${RolAtanacak_Kullanıcı}`;
+            break;
+        case "Rol Atayıcı/Alıcı":
+            url = `http://localhost:5130/Roller/RolVer_RolAtayıcıAlıcı/${RolAtanacak_Kullanıcı}`;
+            break;
+        case "Kullanıcı Silici":
+            url = `http://localhost:5130/Roller/RolVer_KullanıcıSilici/${RolAtanacak_Kullanıcı}`;
+            break;
+    }
+
+    let yanıt = await fetch(url, {
+        method: 'POST',
+        headers: 
+        {
+            'KULLANICI': kullanıcı_kimliği,
+            'OTURUM': oturum_kimliği
+        }
+    });
+
+    if(yanıt.status == 201)
+    {
+        alert("Kullanıcıya rol başarıyla atandı.");
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü rol alma sayfası yapar.
+ */
+function KÇRolAlSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let RolAl_sayfası = document.getElementById("kişisel-çekmece-RolAl");
+    if (RolAl_sayfası !== null)
+    {
+        RolAl_sayfası.style.display = "block";
+    }
+}
+
+async function KÇ_RolAL_RolleriGetir()
+{
+    let kullanıcı = document.getElementById("RolAl-Kullanıcı").value;
+
+    let RollerDropList = document.getElementById("RolAl-Rol");
+    RollerDropList.innerHTML = "";
+
+    let url = `http://localhost:5130/Roller/KullanıcınınRolleri`;
+    let yanıt = await fetch(url, {
+        method: 'GET',
+        headers: 
+        {
+            'KULLANICI': kullanıcı,
+        }
+    });
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Roller = JSON.parse(yanıtJSON);
+        
+        Roller.forEach((rol) =>
+        {
+            let option = document.createElement('option');
+            option.value = rol;
+            option.text = rol;
+            RollerDropList.appendChild(option);
+        }
+        );
+    }
+    else if(yanıt.status == 204)
+    {
+        let option = document.createElement('option');
+        option.value = "yok";
+        option.text = "Rolü yok.";
+        RollerDropList.appendChild(option);
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
+async function KÇ_RolAl() 
+{
+    let rol = document.getElementById("RolAl-Rol").value;
+    let RolüAlınacak_Kullanıcı = document.getElementById("RolAl-Kullanıcı").value;
+    RolüAlınacak_Kullanıcı = encodeURIComponent(RolüAlınacak_Kullanıcı);
+    
+    let url = "";
+
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+
+    switch(rol)
+    {
+        case "Nokta Ekleyici":
+            url = `http://localhost:5130/Roller/RolAl_NoktaEkleyici/${RolüAlınacak_Kullanıcı}`;
+            break;
+        case "Nokta Düzenleyici":
+            url = `http://localhost:5130/Roller/RolAL_NoktaDüzenleyici/${RolüAlınacak_Kullanıcı}`;
+            break;
+        case "Nokta Silici":
+            url = `http://localhost:5130/Roller/RolAl_NoktaSilici/${RolüAlınacak_Kullanıcı}`;
+            break;
+        case "Rol Atayıcı/Alıcı":
+            url = `http://localhost:5130/Roller/RolAl_RolAtayıcıAlıcı/${RolüAlınacak_Kullanıcı}`;
+            break;
+        case "Kullanıcı Silici":
+            url = `http://localhost:5130/Roller/RolAl_KullanıcıSilici/${RolüAlınacak_Kullanıcı}`;
+            break;
+    }
+
+    let yanıt = await fetch(url, {
+        method: 'DELETE',
+        headers: 
+        {
+            'KULLANICI': kullanıcı_kimliği,
+            'OTURUM': oturum_kimliği
+        }
+    });
+
+    if(yanıt.status == 200)
+    {
+        alert("Kullanıcıdan rol başarıyla alındı.");
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
 function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
     let araÇekmece = document.getElementById("ara-çekmece");//Div'lerin div'i. (Ana-div)
