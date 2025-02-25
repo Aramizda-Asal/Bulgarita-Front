@@ -150,7 +150,7 @@ function NoktayaGit(Nokta_Kimliği)
 {
     let nokta = NoktayıGetir(Nokta_Kimliği)[0];
     let zoom
-    if(nokta.properties.BolgeTuru === "Şehir")
+    if(nokta.properties.BolgeTuru === "İl")
     {
         zoom = 8
     }
@@ -162,4 +162,20 @@ function NoktayaGit(Nokta_Kimliği)
     
     KullanıcıÇekmecesiniKapat();
     NoktaÇekmecesiYarat(nokta);
+}
+
+//Tıklanan noktanın penceresi açılmaz, noktanın konumuna gider.
+function NoktayaGit_KÇKapatma(Nokta_Kimliği)
+{
+    let nokta = NoktayıGetir(Nokta_Kimliği)[0];
+    let zoom;
+    if(nokta.properties.BolgeTuru === "İl")
+    {
+        zoom = 8;
+    }
+    else
+    {
+        zoom = 12;
+    }
+    map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
 }
