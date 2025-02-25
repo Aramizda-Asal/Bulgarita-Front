@@ -101,11 +101,6 @@
                     <div id="kişisel-çekmece-ana" class="kişisel-çekmece-sayfası">
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇAyarlarSayfası()">Ayarlar</button>
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇFavorilerSayfası()">Favoriler</button>
-                        <button class="D1-turkuaz butonlar-profil" 
-                            onclick="KÇNoktaEkleSayfası(); KÇ_NoktaEkle_BölgeTürleriniGetir();
-                            KÇ_NoktaEkle_ÜstBölgeleriGetir()">Nokta Ekle</button>
-                        <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAtaSayfası()">Rol Ata</button>
-                        <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAlSayfası()">Rol Al</button>
                     </div>
 
                     <div id="kişisel-çekmece-ayarlar" class="kişisel-çekmece-sayfası">
@@ -218,7 +213,7 @@
 
         <div id="nokta-çekmecesi" class="nokta-çekmece"> 
             <div class="çekmece-içi" id="nokta-penceresi">
-                <div class="çekmece-içorta">
+                <div class="çekmece-içorta" id="nokta-penceresi-içorta">
                     <div class="nokta-başlıklar">
                         <div class="nokta-büyükBaşlık" id="nokta-büyükBaşlık"></div>
                         <div class="nokta-altBaşlık" id="nokta-altBaşlık"></div>
@@ -233,9 +228,6 @@
                         <div>Koordinatlar:</div>
                         <div class="nokta-koordinat" id="nokta-koordinat"></div>
                     </div>
-
-                    <button class="favori-butonu" id="nokta-duzenle-butonu" onclick="NoktaDuzenleSayfası(this)" konum-kimliği="">Noktayı Düzenle
-                    </button>
                 </div>
 
                 <div class="çekmece-içalt">
