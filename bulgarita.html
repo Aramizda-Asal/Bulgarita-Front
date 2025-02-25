@@ -103,7 +103,7 @@
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇFavorilerSayfası()">Favoriler</button>
                         <button class="D1-turkuaz butonlar-profil" 
                             onclick="KÇNoktaEkleSayfası(); KÇ_NoktaEkle_BölgeTürleriniGetir();
-                            KÇ_NoktaEkle_ÜstBölgeleriGetir()">Nokta Ekle</button>
+                            KÇ_NoktaEkle_GirdileriBoşalt();">Nokta Ekle</button>
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAtaSayfası()">Rol Ata</button>
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAlSayfası()">Rol Al</button>
                     </div>
@@ -157,23 +157,23 @@
                         <form id="Form-NoktaEkle" class="form-ortalı içi-bloklu">
                             <h2>Nokta Ekle</h2>
                             <label for="NoktaEkle-EnlemDerece" form="Form-NoktaEkle">Enlemi (Derece):</label>
-                            <input type="number" id="NoktaEkle-EnlemDerece">
+                            <input type="number" id="NoktaEkle-EnlemDerece" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-BoylamDerece" form="Form-NoktaEkle">Boylamı (Derece):</label>
-                            <input type="number" id="NoktaEkle-BoylamDerece">
+                            <input type="number" id="NoktaEkle-BoylamDerece" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-BulgarcaLatinİsim" form="Form-NoktaEkle">Bulgarca Latin İsmi:</label>
-                            <input type="text" id="NoktaEkle-BulgarcaLatinİsim">
+                            <input type="text" id="NoktaEkle-BulgarcaLatinİsim" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-BulgarcaKirilİsim" form="Form-NoktaEkle">Bulgarca Kiril İsmi:</label>
-                            <input type="text" id="NoktaEkle-BulgarcaKirilİsim">
+                            <input type="text" id="NoktaEkle-BulgarcaKirilİsim" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-Türkçeİsim" form="Form-NoktaEkle">Türkçe İsmi:</label>
-                            <input type="text" id="NoktaEkle-Türkçeİsim">
+                            <input type="text" id="NoktaEkle-Türkçeİsim" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-Osmanlıcaİsim" form="Form-NoktaEkle">Osmanlıca İsmi:</label>
-                            <input type="text" id="NoktaEkle-Osmanlıcaİsim">
+                            <input type="text" id="NoktaEkle-Osmanlıcaİsim" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-BölgeTürü" form="Form-NoktaEkle">Bölgenin Türü:</label>
-                            <select name="" id="NoktaEkle-BölgeTürü" onchange="KÇ_NoktaEkle_ÜstBölgeleriGetir()"></select>
+                            <select name="" id="NoktaEkle-BölgeTürü" onchange="KÇ_NoktaEkle_ÜstBölgeleriGetir()" class="NoktaEkle-Girdiler"></select>
                             <label for="NoktaEkle-ÜstBölge" form="Form-NoktaEkle">Üst Bölgesi:</label>
-                            <select name="" id="NoktaEkle-ÜstBölge"></select>
+                            <select name="" id="NoktaEkle-ÜstBölge" class="NoktaEkle-Girdiler"></select>
 
-                            <input type="button" class="D1-turkuaz" value="Noktayı Haritaya Ekle" onclick="" />
+                            <input type="button" class="D1-turkuaz" value="Noktayı Haritaya Ekle" onclick="NoktaEkle()" />
                         </form>
                     
                     </div>

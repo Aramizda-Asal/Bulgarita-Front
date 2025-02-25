@@ -301,6 +301,7 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
             ÜstBölgeDropList.appendChild(option);
         }
         );
+        let option = document.createElement('option');
         option.value = "yok";
         option.text = "Üst bölgesi yok.";
         ÜstBölgeDropList.appendChild(option);
@@ -316,6 +317,15 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
     {
         alert("Beklenmeyen bir hatayla karşılaşıldı.");
         KullanıcıÇekmecesiniKapat();
+    }
+}
+
+function KÇ_NoktaEkle_GirdileriBoşalt()
+{
+    let noktaGirdileri = document.getElementsByClassName("NoktaEkle-Girdiler");
+    for(nokta of noktaGirdileri)
+    {
+        nokta.value = "";
     }
 }
 

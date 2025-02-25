@@ -51,7 +51,7 @@ async function NoktalarıBaşlat()
         { 
             MarkerClickFeature(feature, layer);
     
-            if (feature.properties.BolgeTuru === "Şehir") 
+            if (feature.properties.BolgeTuru === "İl") 
             {
                 SehirKatmani.addLayer(layer);
             }
@@ -151,5 +151,40 @@ async function NoktaSil(button)
     else
     {
         alert("Nokta Silinemedi");
+    }
+}
+
+async function NoktaEkle() 
+{
+    let url = `http://localhost:5130/Harita/NoktaEkle`;
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");  
+
+    let noktaGirdileri = document.getElementsByClassName("NoktaEkle-Girdiler");
+    let nokta = new Nokta(noktaGirdileri[2].value,noktaGirdileri[3].value,noktaGirdileri[4].value,
+        noktaGirdileri[5].value,noktaGirdileri[0].value,noktaGirdileri[1].value,noktaGirdileri[6].value,
+        noktaGirdileri[7].value,null);
+
+    console.log(JSON.stringify(nokta));
+
+    let yanıt = await fetch(url, 
+        {
+            method: 'PUT',
+            headers: 
+            {
+                'KULLANICI': kullanıcı_kimliği,
+                'OTURUM': oturum_kimliği,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(nokta)
+        }); 
+    if(yanıt.status === 200)
+    {
+        KÇ_NoktaEkle_GirdileriBoşalt();
+        alert("Nokta Eklendi.")
+    }
+    else
+    {
+        alert("Nokta Eklenemedi.");
     }
 }
