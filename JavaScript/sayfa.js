@@ -71,6 +71,7 @@ function NoktaÇekmecesiniKapat()
     document.getElementById("nokta-çekmecesi").style.transform = "none";
     document.getElementById("kapatıcı").style.display = "none";
     nokta_çekmecesi_açık = false;
+    NoktaSayfası();
 }
 
 function FavoriButonuDoldur()
@@ -711,14 +712,14 @@ async function DegisiklikleriKaydet(button)
 
     let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
     let Degisti = false;
-    if(nokta.geometry[1] != document.getElementById("NoktaDuzenle-EnlemDerece").value)
+    if(nokta.geometry.coordinates[1] != document.getElementById("NoktaDuzenle-EnlemDerece").value)
     {
-        nokta.geometry[1] = document.getElementById("NoktaDuzenle-EnlemDerece").value;
+        nokta.geometry.coordinates[1] = document.getElementById("NoktaDuzenle-EnlemDerece").value;
         Degisti = true;
     }
-    if(nokta.geometry[0] != document.getElementById("NoktaDuzenle-BoylamDerece").value)
+    if(nokta.geometry.coordinates[0] != document.getElementById("NoktaDuzenle-BoylamDerece").value)
     {
-        nokta.geometry[0] = document.getElementById("NoktaDuzenle-BoylamDerece").value;
+        nokta.geometry.coordinates[0] = document.getElementById("NoktaDuzenle-BoylamDerece").value;
         Degisti = true;
     }
     if(nokta.properties.BulgarcaLatin != document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value)
@@ -745,7 +746,6 @@ async function DegisiklikleriKaydet(button)
     if(Degisti)
     {
         let geri_nokta = NoktaOlusturucuGeoJSON(nokta);
-        console.log(geri_nokta);
         let url = `http://localhost:5130/Harita/NoktaGüncelle`;  
         
         let yanıt = await fetch(url, 
@@ -762,7 +762,7 @@ async function DegisiklikleriKaydet(button)
         if (yanıt.status === 200)
         {
             alert("Degisti")
-            FavoriButonuDoldur();
+            NoktayaGit(geri_nokta.kimlik);
         }
         else
         {
