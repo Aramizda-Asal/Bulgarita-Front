@@ -330,11 +330,13 @@ function KÇ_NoktaEkle_GirdileriBoşalt()
     }
 }
 
-async function KÇ_KullanıcıAra(girdi, divID)
+async function KÇ_KullanıcıAra(girdi, divID, inputID)
 {
     let div = document.getElementById(divID);
     div.innerHTML = "";
     div.style.display = "block";
+
+    girdi = encodeURIComponent(girdi);
 
     let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
     let yanıt = await fetch(url, {method: 'GET'});
@@ -353,10 +355,16 @@ async function KÇ_KullanıcıAra(girdi, divID)
             button.onclick = function ()
             {
                 div.style.display = "none";
-                let kullanıcıInput = document.getElementById("RolAta-Kullanıcı");
+                let kullanıcıInput = document.getElementById(inputID);
                 kullanıcıInput.value = kullanıcı;
-                KÇ_RolAta_RolleriGetir();
-
+                switch(inputID)
+                {
+                    case "RolAta-Kullanıcı":
+                        KÇ_RolAta_RolleriGetir();
+                        break;
+                    case "RolAl-Kullanıcı":
+                        KÇ_RolAL_RolleriGetir();
+                }
             };
             div.appendChild(button);
         }
@@ -393,6 +401,7 @@ function KÇRolAtaSayfası()
 async function KÇ_RolAta_RolleriGetir()
 {
     let kullanıcı = document.getElementById("RolAta-Kullanıcı").value;
+    kullanıcı = encodeURIComponent(kullanıcı);
 
     let RollerDropList = document.getElementById("RolAta-Rol");
     RollerDropList.innerHTML = "";
@@ -500,6 +509,7 @@ function KÇRolAlSayfası()
 async function KÇ_RolAL_RolleriGetir()
 {
     let kullanıcı = document.getElementById("RolAl-Kullanıcı").value;
+    kullanıcı = encodeURIComponent(kullanıcı);
 
     let RollerDropList = document.getElementById("RolAl-Rol");
     RollerDropList.innerHTML = "";
