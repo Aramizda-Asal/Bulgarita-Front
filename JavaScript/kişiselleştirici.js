@@ -173,6 +173,26 @@ async function RoleGöreÖgeleriYarat()
         ana_sayfa.appendChild(RolAlDüğmesi);
     }
 
+    yanıt = await fetch(
+        `${adres}Roller/KullanıcıSilebilirim`,
+        {
+            method: "POST",
+            headers: {
+                KULLANICI: şimdi_kullanan.Kimlik,
+                OTURUM: oturum_kimliği
+            }
+        }
+    );
+    // Kullanıcı silme yetkisi varsa
+    if (yanıt.status == 200)
+    {
+        let KullanıcıSilDüğmesi = document.createElement("button");
+        KullanıcıSilDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
+        KullanıcıSilDüğmesi.setAttribute("onclick", "KÇKullanıcıSilSayfası()");
+        KullanıcıSilDüğmesi.innerHTML = "Kullanıcı Sil";
+        ana_sayfa.appendChild(KullanıcıSilDüğmesi);
+    }
+
     let NoktaPenceresiİçi = document.getElementById("nokta-penceresi-içorta");
     if (NoktaPenceresiİçi === null)
     {
