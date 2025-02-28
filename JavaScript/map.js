@@ -30,35 +30,49 @@ NoktalarıBaşlat()
 
 //Burası ters çalışıyor nedenini anlamadım anlamamaya devam ediyorum kolay gelsin.
 map.on
-('zoomend', function () 
+(
     {
-        if (map.getZoom() <= 10) 
-        {
-            if(!map.hasLayer(SehirKatmani))
+        zoomend: function () 
             {
-                map.addLayer(SehirKatmani);
-            }
-
-            map.removeLayer(KöyKatmani);
-
-            map.removeLayer(KasabaKatmani);
-        } 
-        else
-        {
-            map.removeLayer(SehirKatmani);
-
-            if(!map.hasLayer(KöyKatmani))
+                if (map.getZoom() <= 10) 
+                {
+                    if(!map.hasLayer(SehirKatmani))
+                    {
+                        map.addLayer(SehirKatmani);
+                    }
+        
+                    map.removeLayer(KöyKatmani);
+        
+                    map.removeLayer(KasabaKatmani);
+                } 
+                else
+                {
+                    map.removeLayer(SehirKatmani);
+        
+                    if(!map.hasLayer(KöyKatmani))
+                    {
+                        map.addLayer(KöyKatmani);
+                    }
+        
+                    if(!map.hasLayer(KasabaKatmani))
+                    {
+                        map.addLayer(KasabaKatmani);
+                    }
+                    
+                }
+            },
+        
+        moveend: function ()
             {
-                map.addLayer(KöyKatmani);
+                let sınırlar = map.getBounds();
+                let batı = sınırlar._southWest.lng;
+                let doğu = sınırlar._northEast.lng;
+                let güney = sınırlar._southWest.lat;
+                let kuzey = sınırlar._northEast.lat;
+                console.log(`${batı}-${doğu}\t${güney}-${kuzey}`); 
             }
-
-            if(!map.hasLayer(KasabaKatmani))
-            {
-                map.addLayer(KasabaKatmani);
-            }
-            
-        }
-    });
+    }
+);
 
 function Ara()
 {
