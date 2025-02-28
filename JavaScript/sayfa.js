@@ -831,7 +831,11 @@ function NoktaDuzenleSayfası(button)
 function NoktaSayfası()
 {
     document.getElementById("nokta-penceresi").style.display = "block";
-    document.getElementById("noktayı-duzenle-penceresi").style.display = "none";
+    let noktaDüzenleyici = document.getElementById("noktayı-duzenle-penceresi");
+    if(noktaDüzenleyici !== null)
+    {
+        noktaDüzenleyici.style.display = "none";
+    }
 }
 
 async function DegisiklikleriKaydet(button)
