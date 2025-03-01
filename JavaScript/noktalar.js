@@ -82,11 +82,17 @@ async function NoktalarıBaşlat()
 
 }
 
+const güney_uç = 41.21;
+const dikey_aralık = 0.375;
+
+const batı_uç = 22.3;
+const yatay_aralık = 0.7825;
+
 
 function KöyNoktaKaresiBul(feature)
 {
-    let baslangic = 41.21;
-    let artis = 0.375;
+    let baslangic = güney_uç;
+    let artis = dikey_aralık;
     console.log(baslangic + artis*8)
     let DikeyKare;
     let YatayKare;
@@ -143,8 +149,8 @@ function KöyNoktaKaresiBul(feature)
 
 function KöyNoktaYatayKaresiBul(feature)
 {
-    let baslangic = 22.3;
-    let artis = 0.7825;
+    let baslangic = batı_uç;
+    let artis = yatay_aralık;
     let YatayKare;
 
     if(baslangic <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis)

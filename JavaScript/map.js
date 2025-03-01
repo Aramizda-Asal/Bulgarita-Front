@@ -43,7 +43,8 @@ map.on (
     {
         zoomend: function () 
         {
-            if (map.getZoom() <= 10) 
+            /*
+            if (map.getZoom() <= 8) 
             {
                 if(!map.hasLayer(SehirKatmani))
                 {
@@ -83,7 +84,7 @@ map.on (
                     map.addLayer(KöyKatmanları[0][1])
                 }
   
-            }
+            }*/
         },
         moveend: function ()
         {
@@ -92,10 +93,143 @@ map.on (
             let doğu = sınırlar._northEast.lng;
             let güney = sınırlar._southWest.lat;
             let kuzey = sınırlar._northEast.lat;
-            console.log(`${batı}-${doğu}\t${güney}-${kuzey}`); 
+            console.log(`${batı}-${doğu}\t${güney}-${kuzey}`);
+
+            let batı_sıra = 0;
+            let doğu_sıra = 0;
+            let güney_sıra = 0;
+            let kuzey_sıra = 0;
+
+            let yatay_doğu_fark = doğu - batı_uç;
+            if (yatay_doğu_fark > 0)
+            {
+                doğu_sıra = Math.floor(yatay_doğu_fark / yatay_aralık);
+                if (yatay_doğu_fark % yatay_aralık > 0)
+                    doğu_sıra ++;
+
+                let yatay_batı_fark = batı - batı_uç;
+                if (yatay_batı_fark > 0)
+                {
+                    batı_sıra = Math.floor(yatay_batı_fark / yatay_aralık);
+                }
+            }
+            //if (doğu_sıra >= KöyKatmanları[0].length)
+            //    doğu_sıra = KöyKatmanları[0].length - 1;
+            
+            let dikey_kuzey_fark = kuzey - güney_uç;
+            if (dikey_kuzey_fark > 0)
+            {
+                kuzey_sıra = Math.floor(dikey_kuzey_fark / dikey_aralık);
+                if (dikey_kuzey_fark % dikey_aralık > 0)
+                    kuzey_sıra ++;
+
+                let dikey_güney_fark = güney - güney_uç;
+                if (dikey_güney_fark > 0)
+                {
+                    güney_sıra = Math.floor(dikey_güney_fark / dikey_aralık);
+                }
+            }
+            kuzey_sıra = KöyKatmanları.length - 1 - kuzey_sıra;
+            güney_sıra = KöyKatmanları.length - 1 - güney_sıra;
+            if (kuzey_sıra < 0)
+                kuzey_sıra = 0;
+            //if (güney_sıra >= KöyKatmanları.length)
+            //    güney_sıra = KöyKatmanları.length - 1;
+
+            console.log(`batı:${batı_sıra}, doğu:${doğu_sıra}, kuzey:${kuzey_sıra}, güney:${güney_sıra}`);
+
+            if (map.getZoom() <= 10)
+            {
+                if(!map.hasLayer(SehirKatmani))
+                {
+                    map.addLayer(SehirKatmani);
+                }
+
+                // Bu yakınlaştırma düzeyinde köyler görüntülenmez.
+                for (satır in KöyKatmanları)
+                {
+                    for (sütun in KöyKatmanları[satır])
+                    {
+                        if (map.hasLayer(KöyKatmanları[satır][sütun]))
+                        {
+                            map.removeLayer(KöyKatmanları[satır][sütun]);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (map.hasLayer(SehirKatmani))
+                {
+                    map.removeLayer(SehirKatmani);
+                }
+                AralıktakiKöyKatmanlarınıAç(kuzey_sıra, güney_sıra, batı_sıra, doğu_sıra);
+            }
+            
         }
     }
 );
+
+function AralıktakiKöyKatmanlarınıAç(kuzey_sıra, güney_sıra, batı_sıra, doğu_sıra)
+{
+    // Bakılan bölgenin kuzeyindeki tüm köy katmanları kaldırılır.
+    for (let satır = 0; satır < kuzey_sıra; satır++)
+    {
+        for (sütun in KöyKatmanları[satır])
+        {
+            if (map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.removeLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+    }
+
+    // Bakılan bölgenin güneyindeki tüm köy katmanları kaldırılır.
+    for (let satır = güney_sıra + 1; satır < KöyKatmanları.length; satır++)
+    {
+        for (sütun in KöyKatmanları[satır])
+        {
+            if (map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.removeLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+    }
+
+    // Bakılan bölgedeki satırlarda temizlik yapılır.
+    for (let satır = kuzey_sıra; satır <= güney_sıra && satır < KöyKatmanları.length; satır++)
+    {
+        // Bakılan bölgenin batısındaki tüm köy katmanları kaldırılır.
+        for (let sütun = 0; sütun < batı_sıra; sütun++)
+        {
+            if (map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.removeLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+
+        // Bakılan bölgenin doğusundaki tüm köy katmanları kaldırılır.
+        for (let sütun = doğu_sıra + 1; sütun < KöyKatmanları[satır].length; sütun++)
+        {
+            if (map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.removeLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+    }
+
+    // Bakılan bölgedeki tüm köy katmanları eklenir.
+    for (let satır = kuzey_sıra; satır <= güney_sıra && satır < KöyKatmanları.length; satır++)
+    {
+        for (let sütun = batı_sıra; sütun <= doğu_sıra && sütun < KöyKatmanları[satır].length; sütun++)
+        {
+            if (!map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.addLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+    }
+}
 
 function Ara()
 {
