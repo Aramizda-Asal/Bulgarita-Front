@@ -24,16 +24,15 @@ function MarkerClickFeature(feature, layer)
 let SehirKatmani = L.layerGroup();
 let KöyKatmani = L.layerGroup();
 let KasabaKatmani = L.layerGroup();
-let KöyKatmanları = [
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()],
-    [L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup(), L.layerGroup()]
-];
+let KöyKatmanları = [];
+for (let satır = 0; satır < satır_niceliği; satır++)
+{
+    KöyKatmanları[satır] = [];
+    for (let sütun = 0; sütun < sütun_niceliği; sütun++)
+    {
+        KöyKatmanları[satır][sütun] = L.layerGroup();
+    }
+}
 let BulgaristanNokta;
 //Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
@@ -116,23 +115,19 @@ map.on (
             //if (doğu_sıra >= KöyKatmanları[0].length)
             //    doğu_sıra = KöyKatmanları[0].length - 1;
             
-            let dikey_kuzey_fark = kuzey - güney_uç;
-            if (dikey_kuzey_fark > 0)
+            let dikey_güney_fark = kuzey_uç - güney;
+            if (dikey_güney_fark > 0)
             {
-                kuzey_sıra = Math.floor(dikey_kuzey_fark / dikey_aralık);
-                if (dikey_kuzey_fark % dikey_aralık > 0)
-                    kuzey_sıra ++;
+                güney_sıra = Math.floor(dikey_güney_fark / dikey_aralık);
+                if (dikey_güney_fark % dikey_aralık > 0)
+                    güney_sıra ++;
 
-                let dikey_güney_fark = güney - güney_uç;
-                if (dikey_güney_fark > 0)
+                let dikey_kuzey_fark = kuzey_uç - kuzey;
+                if (dikey_kuzey_fark > 0)
                 {
-                    güney_sıra = Math.floor(dikey_güney_fark / dikey_aralık);
+                    kuzey_sıra = Math.floor(dikey_kuzey_fark / dikey_aralık);
                 }
             }
-            kuzey_sıra = KöyKatmanları.length - 1 - kuzey_sıra;
-            güney_sıra = KöyKatmanları.length - 1 - güney_sıra;
-            if (kuzey_sıra < 0)
-                kuzey_sıra = 0;
             //if (güney_sıra >= KöyKatmanları.length)
             //    güney_sıra = KöyKatmanları.length - 1;
 
@@ -140,11 +135,6 @@ map.on (
 
             if (map.getZoom() <= 10)
             {
-                if(!map.hasLayer(SehirKatmani))
-                {
-                    map.addLayer(SehirKatmani);
-                }
-
                 // Bu yakınlaştırma düzeyinde köyler görüntülenmez.
                 for (satır in KöyKatmanları)
                 {
@@ -156,12 +146,25 @@ map.on (
                         }
                     }
                 }
+
+                if (map.hasLayer(KasabaKatmani))
+                {
+                    map.removeLayer(KasabaKatmani);
+                }
+                if(!map.hasLayer(SehirKatmani))
+                {
+                    map.addLayer(SehirKatmani);
+                }
             }
             else
             {
                 if (map.hasLayer(SehirKatmani))
                 {
                     map.removeLayer(SehirKatmani);
+                }
+                if (!map.hasLayer(KasabaKatmani))
+                {
+                    map.addLayer(KasabaKatmani);
                 }
                 AralıktakiKöyKatmanlarınıAç(kuzey_sıra, güney_sıra, batı_sıra, doğu_sıra);
             }

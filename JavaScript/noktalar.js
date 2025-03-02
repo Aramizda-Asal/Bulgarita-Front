@@ -82,14 +82,49 @@ async function NoktalarıBaşlat()
 
 }
 
-const güney_uç = 41.21;
-const dikey_aralık = 0.375;
+const kuzey_uç = 44.22;
+const güney_uç = 41.22;
+const satır_niceliği = 16;
+const dikey_aralık = (kuzey_uç - güney_uç) / satır_niceliği;
 
 const batı_uç = 22.3;
-const yatay_aralık = 0.7825;
+const doğu_uç = 28.7;
+const sütun_niceliği = 24;
+const yatay_aralık = (doğu_uç - batı_uç) / sütun_niceliği;
 
 
 function KöyNoktaKaresiBul(feature)
+{
+    let kareler = [satır_niceliği, sütun_niceliği]; // dikey, yatay
+    let enlem = feature.geometry.coordinates[1];
+    let boylam = feature.geometry.coordinates[0];
+
+    for (let satır = 0; satır < satır_niceliği; satır++)
+    {
+        if (kuzey_uç - dikey_aralık * satır >= enlem)
+        {
+            if (kuzey_uç - dikey_aralık * (satır + 1) < enlem)
+            {
+                kareler[0] = satır;
+                break;
+            }
+        }
+    }
+    for (let sütun = 0; sütun < sütun_niceliği; sütun++)
+    {
+        if (batı_uç + yatay_aralık * sütun <= boylam)
+        {
+            if (batı_uç + yatay_aralık * (sütun + 1) > boylam)
+            {
+                kareler[1] = sütun;
+                break;
+            }
+        }
+    }
+    return kareler;
+}
+
+function KöyNoktaKaresiBul_eski(feature)
 {
     let baslangic = güney_uç;
     let artis = dikey_aralık;
