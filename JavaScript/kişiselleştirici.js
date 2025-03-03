@@ -211,7 +211,7 @@ async function RoleGöreÖgeleriYarat()
     }
 
     let NoktaÇekmecesi = document.getElementById("nokta-çekmecesi");
-    let NoktaPenceresiİçi = document.getElementById("nokta-penceresi-içorta");
+    let NoktaPenceresiİçi = document.getElementById("nokta-çekmece-içalt");
     if (NoktaÇekmecesi === null || NoktaPenceresiİçi === null)
     {
         return;
