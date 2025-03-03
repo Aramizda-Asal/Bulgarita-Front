@@ -236,7 +236,7 @@ async function RoleGöreÖgeleriYarat()
         NoktaDüzenleDüğmesi.setAttribute("id", "nokta-duzenle-butonu");
         NoktaDüzenleDüğmesi.setAttribute("konum-kimliği", "");
         NoktaDüzenleDüğmesi.innerHTML = "Noktayı Düzenle";
-        NoktaPenceresiİçi.appendChild(NoktaDüzenleDüğmesi);
+        NoktaPenceresiİçi.insertBefore(NoktaDüzenleDüğmesi, NoktaPenceresiİçi.children[0]);
 
         let dış = document.createElement("div");
         dış.setAttribute("class", "çekmece-içi role-bağlı");
@@ -297,7 +297,11 @@ function FavoriButonuYarat()
         FavorilereEkle(this);
     };
 
-    div.appendChild(button);
+    let GoogleHaritalarDüğmesi = document.getElementById("nokta-link");
+    if (GoogleHaritalarDüğmesi !== null)
+        div.insertBefore(button, GoogleHaritalarDüğmesi);
+    else
+        div.appendChild(button);
 }
 
 function FavoriButonuYokEt()
