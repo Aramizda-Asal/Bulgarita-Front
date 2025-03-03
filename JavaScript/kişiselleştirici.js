@@ -231,7 +231,7 @@ async function RoleGöreÖgeleriYarat()
     if (yanıt.status == 200)
     {
         let NoktaDüzenleDüğmesi = document.createElement("button");
-        NoktaDüzenleDüğmesi.setAttribute("class", "favori-butonu role-bağlı");
+        NoktaDüzenleDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
         NoktaDüzenleDüğmesi.setAttribute("onclick", "NoktaDuzenleSayfası(this)");
         NoktaDüzenleDüğmesi.setAttribute("id", "nokta-duzenle-butonu");
         NoktaDüzenleDüğmesi.setAttribute("konum-kimliği", "");
@@ -261,9 +261,9 @@ async function RoleGöreÖgeleriYarat()
             `</div>\n` +
             `\n` +
             `<div class="çekmece-içalt düzenle">\n` +
-            `<button class="favori-butonu" id="nokta-kaydet-butonu" konum-kimliği="" onclick="DegisiklikleriKaydet(this)">Değişiklikleri Kaydet</button>\n` +
-            `<button class="favori-butonu" onclick="NoktaSayfası()">Geri Dön</button>\n` +
-            `<button class="favori-butonu" id="nokta-silme-butonu" konum-kimliği="" onclick="NoktaSil(this)">Noktayı Sil</button>\n` +
+            `<button class="D1-turkuaz butonlar-profil" id="nokta-kaydet-butonu" konum-kimliği="" onclick="DegisiklikleriKaydet(this)">Değişiklikleri Kaydet</button>\n` +
+            `<button class="D1-turkuaz butonlar-profil" onclick="NoktaSayfası()">Geri Dön</button>\n` +
+            `<button class="D1-turkuaz butonlar-profil" id="nokta-silme-butonu" konum-kimliği="" onclick="NoktaSil(this)">Noktayı Sil</button>\n` +
             `</div>\n`;
         dış.innerHTML = iç;
 
@@ -277,7 +277,7 @@ function FavoriButonuYarat()
     let div = document.getElementById('nokta-çekmece-içalt');
 
     let button = document.createElement('button');
-    button.className = "favori-butonu";
+    button.className = "D1-turkuaz butonlar-profil";
     button.id = "favori-butonu";
     button.konum_kimliği = "";
 

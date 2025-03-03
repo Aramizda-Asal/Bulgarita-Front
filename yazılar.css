@@ -58,22 +58,9 @@
 
 .nokta-link
 {
-    display: block;
-    cursor: pointer;
-    
-    width: calc(80% - 6px);
-    margin: 4% auto;
-
-    background-color: #40e0d0;
-    border: 3px solid #40e0d0;
-    border-radius: 10px;
-    padding: 0.3em 0;
-
-    color: #072c28;
+    width: 91%;
     text-align: center;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: small;
+    margin: 2% 1%;
     text-decoration: none;
 }
 
