@@ -184,24 +184,6 @@
     color: #158479;
 }
 
-#favori-resmi 
-{
-    color: #3a3a3a; 
-    font-weight: normal;
-
-    transform: scale(2); 
-    line-height: 1; 
-
-    left: 18%;
-    position: absolute;
-}
-
-#favori-yazisi 
-{
-    font-size: inherit;
-    vertical-align: middle;
-}
-
 .KullanıcıAraÇekmece
 {
     display: none;
