@@ -219,6 +219,7 @@ function KÇAyarlarSayfası()
  */
 function KÇParolaDeğiştirSayfası()
 {
+    KÇParolaDeğiştirGirdileriniBoşalt();
     KişiselÇekmeceSayfalarınıKapat();
     let ParolaDeğiştir_sayfası = document.getElementById("kişisel-çekmece-ParolaDeğiştir");
     if (ParolaDeğiştir_sayfası !== null)
@@ -226,17 +227,31 @@ function KÇParolaDeğiştirSayfası()
         ParolaDeğiştir_sayfası.style.display = "block";
     }
 }
+
+function KÇParolaDeğiştirGirdileriniBoşalt()
+{
+    document.getElementById("ParolaDeğiştir-MevcutParola").value = "";
+    document.getElementById("ParolaDeğiştir-YeniParola").value = "";
+    document.getElementById("ParolaDeğiştir-YeniParolaTekrar").value = "";
+}
 /**
  * Kişisel kullanıcı çekmecesinin görünümünü kullanıcı adı değiştirme sayfası yapar.
  */
 function KÇKullanıcıAdıDeğiştirSayfası()
 {
+    KÇKullanıcıAdıDeğiştirGirdileriniBoşalt();
     KişiselÇekmeceSayfalarınıKapat();
     let KullanıcıAdıDeğiştir_sayfası = document.getElementById("kişisel-çekmece-KullanıcıAdıDeğiştir");
     if (KullanıcıAdıDeğiştir_sayfası !== null)
     {
         KullanıcıAdıDeğiştir_sayfası.style.display = "block";
     }
+}
+
+function KÇKullanıcıAdıDeğiştirGirdileriniBoşalt()
+{
+    document.getElementById("KullanıcıAdıDeğiştir-Parola").value = "";
+    document.getElementById("KullanıcıAdıDeğiştir-Yenisi").value = "";
 }
 
 function DüğmeleriEtkisizBırak(düğmeID)
@@ -254,6 +269,7 @@ function DüğmeleriEtkinleştir(düğmeID)
  */
 function KÇNoktaEkleSayfası()
 {
+    KÇ_NoktaEkle_GirdileriBoşalt();
     KişiselÇekmeceSayfalarınıKapat();
     let NoktaEkle_sayfası = document.getElementById("kişisel-çekmece-NoktaEkle");
     if (NoktaEkle_sayfası !== null)
