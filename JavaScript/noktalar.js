@@ -339,6 +339,7 @@ async function DegisiklikleriKaydet(button)
 
     let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
     let Degisti = false;
+    let türkçeİsimDeğişti = false;
     if(nokta.geometry.coordinates[1] != document.getElementById("NoktaDuzenle-EnlemDerece").value)
     {
         nokta.geometry.coordinates[1] = document.getElementById("NoktaDuzenle-EnlemDerece").value;
@@ -363,6 +364,7 @@ async function DegisiklikleriKaydet(button)
     {
         nokta.properties.Türkçe = document.getElementById("NoktaDuzenle-Türkçeİsim").value;
         Degisti = true;
+        türkçeİsimDeğişti = true;
     }
     if(nokta.properties.Osmanlıca != document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value)
     {
@@ -388,6 +390,10 @@ async function DegisiklikleriKaydet(button)
             }); 
         if (yanıt.status === 200)
         {
+            if(türkçeİsimDeğişti)
+            {
+                currentTooltip.setTooltipContent("değişti");
+            }
             alert("Degisti")
             NoktayaGit(geri_nokta.kimlik);
         }
