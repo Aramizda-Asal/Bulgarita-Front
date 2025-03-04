@@ -165,6 +165,8 @@
 
 #ara-çekmece
 {
+    overflow-y: scroll;
+    max-height: 700%;
     display: none;
     width: 97%;
 
