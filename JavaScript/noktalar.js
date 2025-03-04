@@ -390,10 +390,7 @@ async function DegisiklikleriKaydet(button)
             }); 
         if (yanıt.status === 200)
         {
-            if(türkçeİsimDeğişti)
-            {
-                currentTooltip.setTooltipContent("değişti");
-            }
+            currentTooltip.setTooltipContent(nokta.properties.Türkçe);
             alert("Degisti")
             NoktayaGit(geri_nokta.kimlik);
         }
