@@ -637,7 +637,8 @@ function KÇKullanıcıSilSayfası()
     document.getElementById("KullanıcıSil-Kullanıcı").value = "";
 }
 
-function NoktaDuzenleSayfası(button)
+let Secili_Nokta_Kimlik;
+async function NoktaDuzenleSayfası(button)
 {
     let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
     document.getElementById("NoktaDuzenle-EnlemDerece").value = nokta.geometry.coordinates[1];
@@ -646,8 +647,12 @@ function NoktaDuzenleSayfası(button)
     document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value = nokta.properties.BulgarcaKiril;
     document.getElementById("NoktaDuzenle-Türkçeİsim").value = nokta.properties.Türkçe;
     document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value = nokta.properties.Osmanlıca;
+    document.getElementById("NoktaDuzenle-BölgeTürü").setAttribute("konum-kimliği", nokta.properties.UstBolge);
     document.getElementById("nokta-penceresi").style.display = "none";
     document.getElementById("noktayı-duzenle-penceresi").style.display = "block";
+    Secili_Nokta_Kimlik = nokta.properties.Kimlik;
+    await KÇ_NoktaDuzenle_BölgeTürleriniGetir(nokta.properties.BolgeTuru);
+    KÇ_NoktaDuzenle_ÜstBölgeleriGetir(document.getElementById("NoktaDuzenle-BölgeTürü"));
 }
 
 function NoktaSayfası()
@@ -657,5 +662,92 @@ function NoktaSayfası()
     if(noktaDüzenleyici !== null)
     {
         noktaDüzenleyici.style.display = "none";
+    }
+    
+}
+
+async function KÇ_NoktaDuzenle_BölgeTürleriniGetir(bölge_türü) 
+{
+    let BölgeTürüDropList = document.getElementById("NoktaDuzenle-BölgeTürü");
+    BölgeTürüDropList.innerHTML = "";
+
+    let url = `http://localhost:5130/Harita/GeçerliNoktaTürleri`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Türler = JSON.parse(yanıtJSON);
+       
+        Türler.forEach((tür) =>
+        {
+            let option = document.createElement('option');
+            option.value = tür;
+            option.text = tür;
+            BölgeTürüDropList.appendChild(option);
+        }
+        );
+        BölgeTürüDropList.value = bölge_türü;
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
+async function KÇ_NoktaDuzenle_ÜstBölgeleriGetir(button) 
+{
+    üst_bölge = button.getAttribute("konum-kimliği")
+    let ÜstBölgeDropList = document.getElementById("NoktaDuzenle-ÜstBölge");
+    ÜstBölgeDropList.innerHTML = "";
+
+    let BölgeTürü = document.getElementById("NoktaDuzenle-BölgeTürü").value;
+    BölgeTürü = encodeURIComponent(BölgeTürü);
+
+    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Noktalar = JSON.parse(yanıtJSON);
+        
+        Noktalar.forEach((nokta) =>
+        {
+            if(Secili_Nokta_Kimlik != nokta.kimlik)
+            {
+                let option = document.createElement('option');
+                option.value = nokta.kimlik;
+                option.text = nokta.Türkçe + " (" + nokta.Bulgarca_Kiril + ")";
+                ÜstBölgeDropList.appendChild(option);
+            }   
+        }
+        );
+        let option = document.createElement('option');
+        option.value = "yok";
+        option.text = "Üst bölgesi yok.";
+        ÜstBölgeDropList.appendChild(option);
+        const options = document.querySelectorAll('#NoktaDuzenle-ÜstBölge option');
+    
+        for (let option of options) 
+        {
+          if (option.value === üst_bölge) 
+          {
+            ÜstBölgeDropList.value = üst_bölge
+          }
+        }
+    }
+    else if(yanıt.status == 204)
+    {
+        let option = document.createElement('option');
+        option.value = "yok";
+        option.text = "Üst bölgesi yok.";
+        ÜstBölgeDropList.appendChild(option);
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        NoktaÇekmecesiniKapat();
     }
 }

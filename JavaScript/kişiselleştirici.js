@@ -232,7 +232,7 @@ async function RoleGöreÖgeleriYarat()
     {
         let NoktaDüzenleDüğmesi = document.createElement("button");
         NoktaDüzenleDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
-        NoktaDüzenleDüğmesi.setAttribute("onclick", "NoktaDuzenleSayfası(this)");
+        NoktaDüzenleDüğmesi.setAttribute("onclick", "NoktaDuzenleSayfası(this);");
         NoktaDüzenleDüğmesi.setAttribute("id", "nokta-duzenle-butonu");
         NoktaDüzenleDüğmesi.setAttribute("konum-kimliği", "");
         NoktaDüzenleDüğmesi.innerHTML = "Noktayı Düzenle";
@@ -257,6 +257,10 @@ async function RoleGöreÖgeleriYarat()
             `<input type="text" id="NoktaDuzenle-Türkçeİsim" value=""/>\n` +
             `<label for="NoktaDuzenle-Osmanlıcaİsim" form="Form-NoktaDuzenle">Osmanlıca İsmi:</label>\n` +
             `<input type="text" id="NoktaDuzenle-Osmanlıcaİsim" value=""/>\n` +
+            `<label for="NoktaDuzenle-BölgeTürü" form="Form-NoktaDuzenle">Bölgenin Türü:</label>` +
+            `<select name="" id="NoktaDuzenle-BölgeTürü" onchange="KÇ_NoktaDuzenle_ÜstBölgeleriGetir(this)" class="NoktaDuzenle-Girdiler" konum-kimliği=""></select>` +
+            `<label for="NoktaDuzenle-ÜstBölge" form="Form-NoktaDuzenle">Üst Bölgesi:</label>` +
+            `<select name="" id="NoktaDuzenle-ÜstBölge" class="NoktaDuzenle-Girdiler"></select>`+ 
             `</form>\n` +
             `</div>\n` +
             `\n` +
