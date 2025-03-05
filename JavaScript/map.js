@@ -1,4 +1,5 @@
 var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 8);
+map.options.minZoom = 7;
 var zoom_controls = new L.Control.Zoom({ position: 'bottomright' });
 zoom_controls.addTo(map);
 
