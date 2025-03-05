@@ -88,6 +88,8 @@ async function AnonimdenKişisele()
  */
 async function KişiseldenAnonime()
 {
+    KÇAnaSayfa();
+    
     FavoriButonuYokEt();
 
     await RoleGöreÖgeleriYokEt();
