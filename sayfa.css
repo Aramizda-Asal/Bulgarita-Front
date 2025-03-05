@@ -24,11 +24,11 @@ body
     float: right;
     text-align: center;
 }
-.arama
+.başlık-arama
 {
     display: block;
     width: 46%;
-    margin: 0 10% 0 27%;
+    margin: 0 10% 0 10%;
     height: 100%;
     float: right;
     text-align: center;
@@ -36,6 +36,14 @@ body
     top: 0;
     left: 0;
     z-index: 50;
+}
+.başlık-künye
+{
+    display: block;
+    width: 17%;
+    height: 100%;
+    float: right;
+    text-align: center;
 }
 
 .sayfa-gövdesi

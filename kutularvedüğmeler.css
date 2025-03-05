@@ -147,6 +147,15 @@
     box-shadow: 0 0 8px 2px #158479; /* orijinali: 0 0 10px 3px */
 }
 
+.başlık-düğmesi
+{
+    display: block;
+    height: 6vh;
+    border-radius: 10px;
+    margin: 2vh auto;
+    box-shadow: 0 0 10px 1px #777777;
+}
+
 #Arama-Çubuğu-Dil
 {
     height: 43.6%;

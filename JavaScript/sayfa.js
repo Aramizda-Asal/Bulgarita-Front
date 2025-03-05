@@ -1,3 +1,8 @@
+function KünyeyeGit()
+{
+    window.location.assign("künye.html");
+}
+
 let kullanıcı_çekmecesi_açık = false;
 
 function KullanıcıÇekmecesi()
