@@ -11,20 +11,20 @@ function Kaydol()
             .then(response =>{
                 if(response.status === 201)
                 {
-                    alert("Kayit Olundu")
+                    alert("Başarıyla Kaydoldunuz.");
                     Göster_GirişYap();
                     KaydoluBosalt();
                 }
                 else
                 {
-                    alert("Kayit Olunamadı")
+                    alert("Kayıt Başarısız Oldu.");
                     KaydoluBosalt();
                 }
             })
     }
     else
     {
-        alert("Kayit Olunamadı")
+        alert("Kayıt Başarısız Oldu.");
         KaydoluBosalt();
     }
 }
@@ -396,10 +396,10 @@ async function KÇKullanıcıSil()
 
     if(yanıt.status === 200)
     {
-        alert("sildim");
+        alert("Seçilen Kullanıcı Başarıyla Silindi.");
     }
     else
     {
-        alert("silemedim");
+        alert("Seçilen Kullanıcı Silinemedi.");
     }
 }

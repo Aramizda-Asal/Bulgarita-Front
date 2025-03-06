@@ -129,12 +129,12 @@ async function FavorilereEkle(button)
         }); 
     if (yanıt.status === 201)
     {
-        alert("Eklendi")
+        alert("Nokta Favorilere Eklendi.");
         FavoriButonuDoldur();
     }
     else
     {
-        alert("Eklenemedi");
+        alert("Nokta Favorilere Eklenemedi.");
     }
 }
 
@@ -159,12 +159,12 @@ async function FavorilerdenCikar(button)
 
     if (yanıt.status === 200)
     {
-        alert("Cikarildi")
+        alert("Nokta Favorilerden Çıkarıldı.");
         FavoriButonuBosalt();
     }
     else
     {
-        alert("Cikarilamadi");
+        alert("Nokta Favorilerden Çıkarılamadı.");
     }
 }
 
@@ -631,7 +631,7 @@ async function KÇFavorilerSayfasınıDoldur()
     }
     else
     {
-        alert("yok");
+        alert("Favori Nokta Bulunamadı.");
     }
     
 }

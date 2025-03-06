@@ -437,12 +437,12 @@ async function DegisiklikleriKaydet(button)
             currentTooltip.remove();
             let noktaTürü = NoktaOluşturucuFeature(nokta);
             TooltipEkle(noktaTürü);
-            alert("Degisti")
+            alert("Nokta Bilgileri Değiştirildi.");
             NoktayaGit(geri_nokta.kimlik);
         }
         else
         {
-            alert("Degismedi");
+            alert("Nokta Bilgileri Değiştirilemedi.");
         }
     }
 
