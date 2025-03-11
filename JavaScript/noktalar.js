@@ -458,6 +458,7 @@ function TooltipEkle(nokta)
         click: function()
         {
             NoktaÇekmecesiYarat(feature);
+            currentTooltip = newMarker;
         }
     })
 
