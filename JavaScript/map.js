@@ -220,6 +220,7 @@ function NoktayaGit(Nokta_Kimliği)
     
     KullanıcıÇekmecesiniKapat();
     NoktaÇekmecesiYarat(nokta);
+    AraÇekmecesiniKapat();
 }
 
 //Tıklanan noktanın penceresi açılmaz, noktanın konumuna gider.
