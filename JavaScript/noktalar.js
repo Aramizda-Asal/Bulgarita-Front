@@ -117,6 +117,10 @@ async function NoktalarıBaşlat()
             {
                 KasabaKatmani.addLayer(layer);
             }
+            else if (feature.properties.BolgeTuru === "İlçe")
+            {
+                İlçeKatmanı.addLayer(layer);
+            }
         }
     });
 

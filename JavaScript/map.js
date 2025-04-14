@@ -30,6 +30,7 @@ function MarkerClickFeature(feature, layer)
 let SehirKatmani = L.layerGroup();
 let KöyKatmani = L.layerGroup();
 let KasabaKatmani = L.layerGroup();
+let İlçeKatmanı = L.layerGroup();
 let KöyKatmanları = [];
 for (let satır = 0; satır < satır_niceliği; satır++)
 {
@@ -105,9 +106,40 @@ map.on (
                 {
                     map.removeLayer(KasabaKatmani);
                 }
+                if (map.hasLayer(İlçeKatmanı))
+                {
+                    map.removeLayer(İlçeKatmanı);
+                }
                 if(!map.hasLayer(SehirKatmani))
                 {
                     map.addLayer(SehirKatmani);
+                }
+            }
+            else if(map.getZoom() == 11)
+            {
+                // Bu yakınlaştırma düzeyinde köyler görüntülenmez.
+                for (satır in KöyKatmanları)
+                {
+                    for (sütun in KöyKatmanları[satır])
+                    {
+                        if (map.hasLayer(KöyKatmanları[satır][sütun]))
+                        {
+                            map.removeLayer(KöyKatmanları[satır][sütun]);
+                        }
+                    }
+                }
+
+                if (map.hasLayer(KasabaKatmani))
+                {
+                    map.removeLayer(KasabaKatmani);
+                }
+                if(map.hasLayer(SehirKatmani))
+                {
+                    map.removeLayer(SehirKatmani);
+                }
+                if (!map.hasLayer(İlçeKatmanı))
+                {
+                    map.addLayer(İlçeKatmanı);
                 }
             }
             else
@@ -201,11 +233,15 @@ function NoktayaGit(Nokta_Kimliği)
     let zoom
     if(nokta.properties.BolgeTuru === "İl")
     {
-        zoom = 8
+        zoom = 10
+    }
+    else if(nokta.properties.BolgeTuru === "İlçe")
+    {
+        zoom = 11
     }
     else
     {
-        zoom = 12
+        zoom = 14
     }
     map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
     
@@ -221,11 +257,15 @@ function NoktayaGit_KÇKapatma(Nokta_Kimliği)
     let zoom;
     if(nokta.properties.BolgeTuru === "İl")
     {
-        zoom = 8;
+        zoom = 10;
+    }
+    else if(nokta.properties.BolgeTuru === "İlçe")
+    {
+        zoom = 11
     }
     else
     {
-        zoom = 12;
+        zoom = 14
     }
     map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
 }
