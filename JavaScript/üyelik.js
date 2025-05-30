@@ -42,7 +42,7 @@ async function GirişYap()
     let kullanıcıAdı = encodeURIComponent(document.getElementById("kullanıcıadı-giriş").value);
     let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
-    let url = `${adres}Oturum/GirişYap/${kullanıcıAdı}/${parola}`;
+    let url = `${adres}Oturum/GirişYap/${kullanıcıAdı}/${parola}/`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if (yanıt.status === 200)
@@ -68,8 +68,8 @@ async function ÇıkışYap()
 {
     if (şimdi_kullanan !== null)
     {
-        let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
-        let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
+        let kullanıcı_kimliği = encodeURIComponent(encodeURIComponent(ÇerezDeğeri("KULLANICI")));
+        let oturum_kimliği = encodeURIComponent(encodeURIComponent(ÇerezDeğeri("OTURUM")));
 
         let url = `${adres}Oturum/OturumKapat/${oturum_kimliği}/${kullanıcı_kimliği}`;
         let yanıt = await fetch(url, {method: 'POST'});
@@ -85,8 +85,8 @@ async function ÇıkışYap()
 
 async function OturumAçık()
 {
-    let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
-    let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
+    let kullanıcı_kimliği = encodeURIComponent(encodeURIComponent(ÇerezDeğeri("KULLANICI")));
+    let oturum_kimliği = encodeURIComponent(encodeURIComponent(ÇerezDeğeri("OTURUM")));
 
     let url = `${adres}Oturum/OturumAçık/${oturum_kimliği}/${kullanıcı_kimliği}`;
     let response = await fetch(url, {method: 'GET'});
@@ -126,9 +126,9 @@ async function ParolaDeğiştir()
     {
         if (yeni_parola.value === yeni_parola_tekrar.value)
         {
-            let kullanıcı_kimliği = encodeURIComponent(şimdi_kullanan.Kimlik);
-            let giden_mevcut = encodeURIComponent(mevcut_parola.value);
-            let giden_yeni = encodeURIComponent(yeni_parola.value);
+            let kullanıcı_kimliği = encodeURIComponent(encodeURIComponent(şimdi_kullanan.Kimlik));
+            let giden_mevcut = encodeURIComponent(encodeURIComponent(mevcut_parola.value));
+            let giden_yeni = encodeURIComponent(encodeURIComponent(yeni_parola.value));
 
             let url = `${adres}Kullanıcı/ParolaDeğiştir/${kullanıcı_kimliği}/${giden_mevcut}/${giden_yeni}/`;
             let yanıt = await fetch(url, {method: "PATCH"});
@@ -177,9 +177,9 @@ async function KullanıcıAdıDeğiştir()
     if (parola.value.length > 0 &&
         yeni_ad.value.length > 0)
     {
-        let kullanıcı_kimliği = encodeURIComponent(şimdi_kullanan.Kimlik);
-        let giden_parola = encodeURIComponent(parola.value);
-        let giden_yeni = encodeURIComponent(yeni_ad.value);
+        let kullanıcı_kimliği = encodeURIComponent(encodeURIComponent(şimdi_kullanan.Kimlik));
+        let giden_parola = encodeURIComponent(encodeURIComponent(parola.value));
+        let giden_yeni = encodeURIComponent(encodeURIComponent(yeni_ad.value));
 
         let url = `${adres}Kullanıcı/KullanıcıAdıDeğiştir/${kullanıcı_kimliği}/` +
                   `${giden_parola}/${giden_yeni}/`;
