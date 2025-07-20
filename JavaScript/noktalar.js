@@ -32,8 +32,8 @@ class Feature
         this.properties = {};
         this.properties["BulgarcaLatin"] = Bulgarca_Latin;
         this.properties["BulgarcaKiril"] = Bulgarca_Kiril;
-        this.properties["Türkçe"] = Türkçe;
-        this.properties["Osmanlıca"] = Osmanlıca;
+        this.properties["Türkçe"] = Türkçe.endsWith("-T") ? "" : Türkçe;
+        this.properties["Osmanlıca"] = Osmanlıca.endsWith("-O") ? "" : Osmanlıca;
         this.properties["BolgeTuru"] = bolge_turu;
         this.properties["UstBolge"] = ust_bolge;
         this.properties["Kimlik"] = kimlik;
