@@ -763,3 +763,27 @@ async function KÇ_NoktaDuzenle_ÜstBölgeleriGetir(button)
         NoktaÇekmecesiniKapat();
     }
 }
+
+function BizeUlasinAc(button)
+{
+    document.getElementById("popup-metin").value = "";
+    document.getElementById("form-popup").style.display = "block";
+    console.log(button.getAttribute("konum-kimliği"))
+    document.getElementById("form-popup").setAttribute("konum-kimliği", button.getAttribute("konum-kimliği"));
+}
+
+function BizeUlasinKapa()
+{
+    document.getElementById("form-popup").style.display = "none";
+    document.getElementById("form-popup").setAttribute("konum-kimliği", "");
+}
+
+async function BizeUlasinGonder()
+{
+    let nokta = NoktayıGetir(document.getElementById("form-popup").getAttribute("konum-kimliği"))[0];
+    let metin = document.getElementById("popup-metin").value;
+
+    console.log(nokta);
+    console.log(metin);
+    console.log(şimdi_kullanan);
+}

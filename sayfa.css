@@ -175,6 +175,18 @@ body
     cursor: crosshair;
 }
 
+.form-popup
+{
+    display: none;
+    position: fixed;
+    z-index: 70;
+    height: 50vh;
+    width: 50vw;
+    top: 10vw;
+    left: 50vh;
+    background-color: red;
+}
+
 @media (orientation:landscape)
 {
     .kullanıcı-çekmece

@@ -245,6 +245,9 @@ async function NoktaÇekmecesiYarat(feature)
     let nokta_kaydet_butonu = document.getElementById("nokta-kaydet-butonu");
     if (nokta_kaydet_butonu !== null)
         nokta_kaydet_butonu.setAttribute("konum-kimliği", feature.properties.Kimlik);
+    let nokta_bize_ulasin_butonu = document.getElementById("bize-ulasin-butonu");
+    if (nokta_bize_ulasin_butonu !== null)
+        nokta_bize_ulasin_butonu.setAttribute("konum-kimliği", feature.properties.Kimlik);
 
     let url = `${adres}Favori/SatirVarMi`;   
     let yanıt = await fetch(url, 

@@ -237,3 +237,24 @@
 {
     margin-bottom: 1% !important;
 }
+
+.popup-metin
+{
+    width: 50vw;
+    height: 50vh;
+    border: none;
+}
+
+.popup-vazgeç-buton
+{
+    position: absolute;
+    bottom: 0;
+    left: 30vh;
+}
+
+.popup-gönder-buton
+{
+    position: absolute;
+    bottom: 0;
+    left: 60vh;
+}

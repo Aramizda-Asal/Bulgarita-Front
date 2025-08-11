@@ -333,10 +333,11 @@ function BizeUlasinButonunuYarat()
     button.id = "bize-ulasin-butonu";
     button.konum_kimliği = "";
     button.innerHTML = "Bize Ulaşın"
+    button.setAttribute("konum-kimliği", "");
 
     button.onclick = function () 
     {
-        
+        BizeUlasinAc(this);
     };
 
     let GoogleHaritalarDüğmesi = document.getElementById("nokta-link");
