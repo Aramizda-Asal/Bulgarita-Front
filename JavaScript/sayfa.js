@@ -786,4 +786,6 @@ async function BizeUlasinGonder()
     console.log(nokta);
     console.log(metin);
     console.log(şimdi_kullanan);
+
+    BizeUlasinKapa();
 }
