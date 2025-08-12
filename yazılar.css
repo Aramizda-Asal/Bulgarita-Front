@@ -18,7 +18,7 @@
 
     background-color: transparent;
 
-    margin: 8vh 0 8vh;
+    margin: 6vh 0;
 }
 
 .nokta-büyükBaşlık
@@ -43,7 +43,7 @@
 
     background-color: transparent;
 
-    margin: 8vh 0 8vh;
+    margin: 4vh 0;
 }
 
 .nokta-diller
@@ -59,7 +59,7 @@
 .nokta-temel-bilgiler
 {
     text-align: justify;
-    max-height: 24vh;
+    max-height: 20vh;
     overflow-y: auto;
     margin: 2vh 2vh 2vh;
 }
@@ -68,6 +68,7 @@
 .nokta-link
 {
     width: 91%;
+    height: 12%;
     text-align: center;
     margin: 2% 1%;
     text-decoration: none;

@@ -128,23 +128,16 @@ body
 {
     width: 100%;
     height: 82%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     overflow-y: auto;
 }
 .çekmece-içalt
 {
     width: 100%;
-    height: 10%;
+    height:24%;
     position: absolute;
     bottom: 0;
     left: 0;
-}
-
-#nokta-çekmece-içalt
-{
-    height: 20%;
 }
 
 .düzenle
@@ -184,7 +177,6 @@ body
     width: 50vw;
     top: 10vw;
     left: 50vh;
-    background-color: red;
 }
 
 @media (orientation:landscape)
