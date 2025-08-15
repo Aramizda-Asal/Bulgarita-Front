@@ -79,9 +79,14 @@ function NoktalarıTemizle()
     {
         map.removeLayer(SehirKatmani);
     }
+    if(map.hasLayer(İlçeKatmanı))
+    {
+        map.removeLayer(İlçeKatmanı);
+    }
 
     Noktalar = [];
     SehirKatmani = L.layerGroup();
+    İlçeKatmanı = L.layerGroup();
     KöyKatmani = L.layerGroup();
     KasabaKatmani = L.layerGroup();
     KöyKatmanları = [];
