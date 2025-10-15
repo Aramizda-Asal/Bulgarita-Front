@@ -286,3 +286,25 @@
     bottom: 0;
     left: 60vh;
 }
+
+#çekmeceKapatmaDüğme
+{
+    position: relative;
+    float: right;
+}
+
+@media (orientation:landscape)
+{
+    #çekmeceKapatmaDüğme
+    {
+        display: none;
+    }
+}
+
+@media (orientation:portrait)
+{
+    #çekmeceKapatmaDüğme
+    {
+        display: block;
+    }
+}
