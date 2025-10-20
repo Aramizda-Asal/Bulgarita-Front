@@ -780,12 +780,46 @@ function BizeUlasinKapa()
 
 async function BizeUlasinGonder()
 {
+    if (şimdi_kullanan == null)
+    {
+        return;
+    }
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+
     let nokta = NoktayıGetir(document.getElementById("form-popup").getAttribute("konum-kimliği"))[0];
     let metin = document.getElementById("popup-metin").value;
 
     console.log(nokta);
     console.log(metin);
     console.log(şimdi_kullanan);
+
+    let gönderi = {
+        "Nokta": nokta.properties.Kimlik,
+        "Yorum": metin
+    };
+
+    let url = `${adres}Harita/NoktaGeriBildirimi`;
+    let yanıt = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'KULLANICI': şimdi_kullanan.Kimlik,
+                'OTURUM': oturum_kimliği,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(gönderi)
+        }
+    );
+
+    if (yanıt.status === 200)
+    {
+        alert("Geri bildirim başarıyla gönderildi.");
+    }
+    else
+    {
+        alert(`${yanıt.status} Geri bildirim başarısız oldu.`);
+    }
 
     BizeUlasinKapa();
 }
